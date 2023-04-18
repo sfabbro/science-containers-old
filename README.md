@@ -1,2 +1,6 @@
 # science-containers
-Astronomy docker containers for the CANFAR science-platform
+
+This repository includes build recipes for the containers of the CANFAR science-platform.
+Please feel free to contribute.
+
+Run `./build.sh` to produce and push all containers.
