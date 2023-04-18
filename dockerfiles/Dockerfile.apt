@@ -1,0 +1,15 @@
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# update base
+RUN apt-get update --yes --quiet --fix-missing \
+    && apt-get upgrade --yes --quiet
+
+# install bunch of packages
+COPY apt.list .
+RUN apt-get install --yes --quiet $(cat apt.list)
+
+# clean up
+RUN apt-get clean --yes \
+    && apt-get autoremove --purge --quiet --yes \
+    && rm -rf /var/lib/apt/lists/* /var/tmp/*

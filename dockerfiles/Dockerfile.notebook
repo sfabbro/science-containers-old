@@ -1,0 +1,21 @@
+
+RUN jupyter notebook --generate-config
+COPY jupyter_server_config.py docker_healthcheck.py /etc/jupyter/
+# Legacy for Jupyter Notebook Server, see: [#1205](https://github.com/jupyter/docker-stacks/issues/1205)
+RUN sed -re "s/c.ServerApp/c.NotebookApp/g" \
+    /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py
+
+# HEALTHCHECK documentation: https://docs.docker.com/engine/reference/builder/#healthcheck
+# This healtcheck works well for `lab`, `notebook`, `nbclassic`, `server` and `retro` jupyter commands
+# https://github.com/jupyter/docker-stacks/issues/915#issuecomment-1068528799
+HEALTHCHECK --interval=5s --timeout=3s --start-period=5s --retries=3 \
+    CMD /etc/jupyter/docker_healthcheck.py || exit 1
+
+
+# ensure we build jupyter extensions
+RUN jupyter lab build \
+    && jupyter lab clean \
+    && npm cache clean --force
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ENV JUPYTERLAB_ARGS="--collaborative"

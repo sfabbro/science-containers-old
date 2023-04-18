@@ -1,0 +1,8 @@
+keras
+keras-cv
+keras-tuner
+nvidia-apex=*=*cpu*
+tensorboard
+tensorflow=2.11*=*cpu*
+tensorflow-hub
+xplique

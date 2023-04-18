@@ -1,0 +1,16 @@
+autogluon.timeseries
+kats
+mlforecast
+neuralforecast
+orbit-ml
+pmdarima
+prophet
+pytorch-forecasting
+salesforce-merlion
+sktime
+statsforecast
+sktime-all-extras
+tbats
+tsfresh
+tslearn
+u8darts-all

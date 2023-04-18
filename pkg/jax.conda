@@ -1,0 +1,11 @@
+blackjax
+chex
+dm-haiku
+equinox
+flax
+jax
+jaxlib=0.4*=*cpu*
+jaxopt
+jaxtyping
+numpyro
+optax

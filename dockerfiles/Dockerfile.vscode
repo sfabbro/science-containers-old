@@ -1,0 +1,25 @@
+RUN curl -s https://api.github.com/repos/boxboat/fixuid/releases/latest \
+    	 | grep 'browser_download_url.*-amd64.tar.gz' \
+    	 | awk '{print $2}' | xargs -n1 curl -fsSL | tar -C /usr/local/bin -xzf - \
+    && chown root:root /usr/local/bin/fixuid \
+    && chmod 4755 /usr/local/bin/fixuid \    
+    && mkdir -p /etc/fixuid
+
+RUN adduser --gecos '' --disabled-password coder \
+    && echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd \
+    && printf "user: coder\ngroup: coder\n" > /etc/fixuid/config.yml
+
+RUN curl -s https://api.github.com/repos/coder/code-server/releases/latest | \
+    grep 'browser_download_url.*_amd64.deb' | awk '{print $2}' | xargs -n1 curl -fOL \
+    && dpkg -i code-server_*_amd64.deb \
+    && rm code-server_*_amd64.deb
+
+RUN curl -sL https://github.com/coder/code-server/raw/main/ci/release-image/entrypoint.sh \
+    -o /usr/local/bin/entrypoint.sh \
+    && chmod 755 /usr/local/bin/entrypoint.sh
+
+EXPOSE 5000
+RUN mkdir /skaha
+COPY vscode_start.sh /usr/local/bin/vscode_start.sh
+RUN chmod a+x /usr/local/bin/vscode_start.sh
+ENTRYPOINT [ "/usr/local/bin/vscode_start.sh" ]

@@ -1,0 +1,7 @@
+arrow-cpp=*=*cpu*
+libblas=*=*mkl*
+libcblas=*=*mkl*
+liblapack=*=*mkl*
+liblapacke=*=*mkl*
+numexpr=*=*mkl*
+pyarrow=*=*cpu*

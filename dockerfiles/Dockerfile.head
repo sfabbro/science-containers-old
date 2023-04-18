@@ -1,0 +1,13 @@
+ARG BASE_CONTAINER=ubuntu:22.04
+
+FROM ${BASE_CONTAINER}
+
+LABEL maintainer="CANFAR Project <support@canfar.net>"
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+ENV SHELL=/bin/bash
+
+USER root
+
+WORKDIR /tmp

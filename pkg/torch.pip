@@ -1,0 +1,12 @@
+# conda version of albumentations requires qt
+albumentations
+pykeops
+pytorch-tabnet
+pytorch-widedeep
+sbi
+tensorwatch
+torchdiffeq
+torchdrift
+torchensemble
+torcheval
+torchsde

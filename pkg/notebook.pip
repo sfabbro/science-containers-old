@@ -1,0 +1,5 @@
+genai
+ipyaladin
+jupyterlab_sublime
+git+https://github.com/radekosmulski/ask_ai.git
+pywwt

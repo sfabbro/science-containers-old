@@ -1,0 +1,74 @@
+# 04/2023: requires sqlalchemy<2
+langchain
+paperqa
+jupyter_ai
+jupyter_ai_chatgpt
+jupyter_ai_dalle
+
+# 04/2023: conflicting with rapids (because of ray-all) - conda
+evotorch
+
+# slightly old, not super usefulmam
+scikit-na
+
+# 04/23: depends on older matplotlib, conflicting on too many packages
+proplot
+
+# 04/23: pip hard  deps on tensorflow-cpu and flax<0.7
+aws-fortuna
+
+# 04/2023: needs unfortunate sklearn<=1.0
+causalml
+omnixai
+
+# 04/2023: many hard deps
+autogluon.*tabular
+
+# 04/2023: too experimental
+torcharrow
+
+# 04/2023: needs fastai channel and cudatoolkit>11.3
+torchaudio
+
+# 04/2023: old deps on tensorflow<2
+alibi
+alibi-detect
+
+# 04/2023 heavy deps, useful?
+atom-ml
+
+# 04/2023: dependency on jax==0.3
+oryx
+
+# 04/2023: dgl conda channel with cudatoolkit>11.3 only
+dglteam::dgl
+dglteam::dgl-cuda
+
+# 04/2023: conflicting deps on matplotlib, torchvision
+fastai::fastai
+
+# 04/2023: needs tensorflow
+bioconda::deepsig
+
+# 04/23: use qt - maybe not so useful 
+evalml
+featuretools
+composeml
+woodwork
+
+# 04/2023: outdated deps (pandas, scipy, seaborn)
+# https://github.com/facebookresearch/balance/blob/main/setup.py
+balance
+
+# to check
+pandas-selectable
+jupyterlab-nvdashboard
+glue-vispy-viewers
+glue-jupyter
+glue-astronomy
+jdaviz
+pillow-simd
+forestci
+ott
+augly
+mcml

@@ -1,0 +1,3 @@
+cudatoolkit=11.2*
+nccl
+nvtop
