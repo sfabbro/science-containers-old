@@ -58,7 +58,7 @@ make_dockerfile() {
 	  >> env.yml
 
     # add the list of conda packages
-    cat > env.yml <<EOF
+    cat >> env.yml <<EOF
 dependencies:
   - python=${PYTHON_VERSION}.*
   - pip
