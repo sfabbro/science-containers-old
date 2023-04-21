@@ -91,6 +91,9 @@ EOF
     [[ -e apt.list ]] && \
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.apt >> Dockerfile
 
+    [[ ${container} =~ astro ]] && \
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.astro >> Dockerfile
+
     [[ -e ${SRC_DIR}/dockerfiles/Dockerfile.${stack} ]] && \
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.${stack} >> Dockerfile
 
@@ -100,9 +103,6 @@ EOF
     cat ${SRC_DIR}/dockerfiles/Dockerfile.env >> Dockerfile
 
     [[ ${container} =~ notebook ]] && \
-	cat ${SRC_DIR}/dockerfiles/Dockerfile.notebook >> Dockerfile
-
-    [[ ${container} =~ base-lab ]] && \
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.notebook >> Dockerfile
 
     [[ ${container} =~ vscode ]] && \
