@@ -2,6 +2,7 @@ bash_kernel
 black
 bqplot
 bqplot-image-gl
+dvclive
 fastai::execnb
 fastai::nbdev
 fastai::nbdev-numpy
@@ -10,6 +11,9 @@ fastai::nbdev-pytorch
 fastai::nbdev-scipy
 fastai::nbdev-stdlib
 fastai::nbprocess
+genai
+hdf5plugin
+ipyaladin
 ipyevents
 ipygany
 ipykernel
@@ -17,30 +21,40 @@ ipympl
 ipynbname
 ipython_genutils
 ipytree
-ipyvolume
-ipyvuetify
+# buggy with jlab>4
+#ipyvolume
+#ipyvuetify
 ipywebrtc
 ipywidgets
 isort
 jupyter-archive
-jupyter-dash
+# deprecated for dash>2.11
+#jupyter-dash
+jupyter-resource-usage
 jupyter_server>2
 jupyter-server-proxy
 jupyterlab
 jupyterlab_code_formatter
+jupyterlab-favorites
 jupyterlab-git
-jupyterlab-link-share
-jupyterlab-system-monitor
+#jupyterlab-lsp
+# not ready for jlab>4
+#jupyterlab-link-share
+#jupyterlab-system-monitor
 jupyterlab-variableinspector
 jupytext
-nb_conda_kernels
+#nb_conda_kernels
 nbqa
 notebook
 nodejs
 papermill
-vaex-jupyter
+# buggy with jlab>4
+#vaex-jupyter
 pyvista
-trame
+pywwt
+# buggy with vuetify build
+#trame
 websockets
 wwt_jupyterlab_extension
-xeus-python
+# useless?
+#xeus-python

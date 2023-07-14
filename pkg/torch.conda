@@ -1,3 +1,5 @@
+# conda version of albumentations requires qt
+albumentations
 accelerate
 baal
 botorch
@@ -7,7 +9,7 @@ faiss=*=*cpu*
 gpytorch
 hydra-core
 kornia
-lightning-bolts
+#lightning-bolts
 lovely-tensors
 nvidia-apex=*=*cpu*
 pgmpy

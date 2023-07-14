@@ -21,9 +21,6 @@ aws-fortuna
 causalml
 omnixai
 
-# 04/2023: many hard deps
-autogluon.*tabular
-
 # 04/2023: too experimental
 torcharrow
 

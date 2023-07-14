@@ -5,7 +5,8 @@ cmasher
 corner
 dash-table
 datashader
-dtale
+# dtale has unfriendly strict dependencies
+#dtale
 hist
 holoviews
 hvplot

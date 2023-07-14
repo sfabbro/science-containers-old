@@ -14,6 +14,8 @@ curl
 dumb-init
 dvipng
 emacs-nox
+fits2idia
+fitsverify
 flex
 ffmpeg
 fonts-liberation
@@ -21,6 +23,7 @@ fpart
 gfortran
 git
 git-lfs
+hdf5-tools
 htop
 imagemagick
 jed
@@ -30,6 +33,8 @@ less
 libarchive-tools
 libboost-dev
 libbz2-dev
+libcfitsio-bin
+libcfitsio-dev
 libeigen3-dev
 libopenmpi-dev
 liblzma-dev

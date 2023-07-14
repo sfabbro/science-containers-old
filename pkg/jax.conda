@@ -1,5 +1,6 @@
 blackjax
-chex
+# requires numpy>=1.25 conflicts with numba
+#chex
 dm-haiku
 equinox
 flax
