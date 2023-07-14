@@ -1,9 +1,12 @@
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# update base
+# update and add ppa
 RUN apt-get update --yes --quiet --fix-missing \
-    && apt-get upgrade --yes --quiet
+    && apt-get install --quiet --yes software-properties-common \
+    && apt-get upgrade --yes --quiet \
+    && add-apt-repository ppa:cartavis-team/carta \
+    && apt-get update --yes --quiet
 
 # install bunch of packages
 COPY apt.list .

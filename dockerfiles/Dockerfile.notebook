@@ -18,4 +18,6 @@ RUN jupyter lab build \
     && npm cache clean --force
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-ENV JUPYTERLAB_ARGS="--collaborative"
+
+# enable the collaborative mode
+#ENV JUPYTERLAB_ARGS="--collaborative"

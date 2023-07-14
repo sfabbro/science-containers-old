@@ -1,16 +1,17 @@
-
-# install latest stilts
-RUN wget --quiet http://www.star.bris.ac.uk/~mbt/stilts/stilts.jar -O /usr/local/bin/stilts.jar \
-    && wget --quiet http://www.star.bris.ac.uk/~mbt/stilts/stilts -O /usr/local/bin/stilts \
-    && chmod +x /usr/local/bin/stilts
-
-# install topcat with parquet
-RUN wget --quiet http://www.star.bris.ac.uk/~mbt/topcat/topcat-extra.jar -O /usr/local/bin/topcat-extra.jar \
-    && wget --quiet http://www.star.bris.ac.uk/~mbt/topcat/topcat -O /usr/local/bin/topcat \
-    && sed -i -e 's/topcat-full/topcat-extra/g' /usr/local/bin/topcat \
-    && chmod +x /usr/local/bin/topcat
+# install topcat with parquet and create stilts/topcat scripts
+ADD https://www.star.bris.ac.uk/~mbt/topcat/topcat-extra.jar /usr/local/bin/topcat-extra.jar
+RUN unzip -o /usr/local/bin/topcat-extra.jar -d /usr/local/bin topcat stilts \
+    && sed -i -e 's/topcat-full/topcat-extra/g' /usr/local/bin/topcat /usr/local/bin/stilts \
+    && chmod 644 /usr/local/bin/topcat-extra.jar \
+    && chmod 755 /usr/local/bin/stilts /usr/local/bin/topcat
 
 # hack as topcat url is down (march 2023 - version 4.8-7)
 #RUN wget -q https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/files/vault/sfabbro/topcat.tar.gz -O /topcat.tar.gz \
 #    && tar xf /topcat.tar.gz \
 #    && rm /topcat.tar.gz
+
+# system settings and permissions
+COPY nofiles.conf /etc/security/limits.d/
+
+# JVM settings
+#ENV JAVA_OPTS="-Xms512m -Xmx2048m -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -XX:OnError='cat hs_err_pid%p.log'"
