@@ -1,9 +1,0 @@
-etna
-# torch and prophet
-etna[all]
-fedot
-# with torch and tensorflow
-fedot[extra]
-greykite
-neuralprophet
-

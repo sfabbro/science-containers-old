@@ -1,8 +1,9 @@
 astro
 datascience
 jax
-misc
-pycaret
 rail
+misc
+rail
+tabular
 torch
 viz

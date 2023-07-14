@@ -1,0 +1,23 @@
+# restrictive deps
+#etna
+# needs torch and prophet
+#etna[all]
+# restrictive deps
+#fedot
+# with torch and tensorflow
+#fedot[extra]
+# restrictive deps
+#greykite
+# restrictive deps
+#neuralprophet
+
+carefree-learn
+clevercsv[full]
+gcastle
+getdaft
+gpboost
+iterative-stratification
+poniard
+pycaret>2.4
+pytorch-widedeep
+pytorch-tabular
