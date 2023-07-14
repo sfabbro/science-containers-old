@@ -26,20 +26,21 @@ make_dockerfile() {
     for p in $(cat ${SRC_DIR}/stacks/${stack}); do
 	for l in apt conda pip channels; do
 	    [[ -e ${SRC_DIR}/pkg/${p}.${l} ]] && \
-		grep -v \# ${SRC_DIR}/pkg/${p}.${l} >> ${l}.list
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/${p}.${l} >> ${l}.list
 	done
     done
 
     # gpu: hack to force conda packages for their cuda versions
     if [[ ${container} =~ gpu ]]; then
 	sed -i -e "s|cpu|cu|g" conda.list
-	cat ${SRC_DIR}/pkg/cuda.conda >> conda.list
+	grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/cuda.conda >> conda.list
+	cat ${SRC_DIR}/pkg/cuda.channels >> channels.list
     fi
 
-    # notebook: add specific ackages
+    # notebook: add specific packages
     if [[ ${container} =~ notebook ]]; then
-	cat ${SRC_DIR}/pkg/notebook.conda >> conda.list
-	cat ${SRC_DIR}/pkg/notebook.pip >> pip.list
+	grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.conda >> conda.list
+	grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.pip >> pip.list
 	# buggy extension (apr 2023)
 	     # hack to add nvdashboard
 	#    if [[ ${container} =~ gpu ]]; then
@@ -64,6 +65,8 @@ dependencies:
   - pip
   - pip-tools
   - pipenv
+  - conda-lock
+  - poetry
 EOF
 
     [[ -e conda.list ]] && cat conda.list \
@@ -85,7 +88,7 @@ EOF
 
     # now compile a final Dockerfile
     echo "Dockerfile stack is ${stack}"
-    
+
     cat ${SRC_DIR}/dockerfiles/Dockerfile.head > Dockerfile
 
     [[ -e apt.list ]] && \
@@ -108,7 +111,7 @@ EOF
     [[ ${container} =~ vscode ]] && \
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.vscode >> Dockerfile
 
-    cp -r ${SRC_DIR}/dockerfiles/files/* .
+    cp ${SRC_DIR}/dockerfiles/files/* .
 }
 
 build_container() {
@@ -116,10 +119,10 @@ build_container() {
     local build_dir=${PWD}/_build/${container}
     local base_container=${BASE_CONTAINER}
     [[ $# == 2 ]] && base_container=${OWNER}/$2:latest
-    
+
     rm -rf ${build_dir}
     mkdir -p ${build_dir}
-    
+
     pushd ${build_dir}
     make_dockerfile ${container}
 
@@ -136,36 +139,3 @@ push_container() {
     docker tag ${OWNER}/${container}:latest ${REGISTRY}/${OWNER}/${container}:${TAG}
     docker push ${REGISTRY}/${OWNER}/${container}:${TAG}
 }
-
-build_container base
-build_container base-gpu
-
-build_container astroml base
-build_container astroml-notebook astroml
-build_container astroml-vscode astroml
-
-build_container astroml-gpu base-gpu
-build_container astroml-gpu-notebook astroml-gpu
-build_container astroml-gpu-vscode astroml-gpu
-
-build_container astrapids-gpu base-gpu
-build_container astrapids-gpu-notebook astrapids-gpu
-build_container astrapids-gpu-vscode astrapids-gpu
-
-# tensorflow dependencies conflict with grpcio
-#build_container astroflow astroml
-#build_container astroflow-gpu astroml-gpu
-
-#push_container base
-
-push_container astroml
-push_container astroml-vscode
-push_container astroml-notebook
-
-push_container astroml-gpu
-push_container astroml-gpu-vscode
-push_container astroml-gpu-notebook
-
-push_container astrapids-gpu
-push_container astrapids-gpu-notebook
-push_container astrapids-gpu-vscode
