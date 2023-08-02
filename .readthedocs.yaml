@@ -12,6 +12,7 @@ build:
     python: "3.11"
 
 # Build documentation in the docs/ directory with Sphinx
+#updated for our current directory structure
 sphinx:
   configuration: doc/NewUsers/docs/conf.py
 
