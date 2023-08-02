@@ -12,8 +12,9 @@ build:
     python: "3.11"
 
 # Build documentation in the docs/ directory with Sphinx
+#updated for our current directory structure
 sphinx:
-  configuration: docs/conf.py
+  configuration: doc/NewUsers/docs/conf.py
 
 # We recommend specifying your dependencies to enable reproducible builds:
 # https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
