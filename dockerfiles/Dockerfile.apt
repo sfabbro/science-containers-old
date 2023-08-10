@@ -1,18 +1,17 @@
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# update and add ppa
+
+# install bunch of packages
+COPY apt.list .
+
+# update, add ppa, install and cleanup
 RUN apt-get update --yes --quiet --fix-missing \
     && apt-get install --quiet --yes software-properties-common \
     && apt-get upgrade --yes --quiet \
     && add-apt-repository ppa:cartavis-team/carta \
-    && apt-get update --yes --quiet
-
-# install bunch of packages
-COPY apt.list .
-RUN apt-get install --yes --quiet $(cat apt.list)
-
-# clean up
-RUN apt-get clean --yes \
+    && apt-get update --yes --quiet \
+    && apt-get install --yes --quiet $(cat apt.list) \
+    && apt-get clean --yes \
     && apt-get autoremove --purge --quiet --yes \
     && rm -rf /var/lib/apt/lists/* /var/tmp/*

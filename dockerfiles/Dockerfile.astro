@@ -1,6 +1,6 @@
 # install topcat with parquet and create stilts/topcat scripts
-ADD https://www.star.bris.ac.uk/~mbt/topcat/topcat-extra.jar /usr/local/bin/topcat-extra.jar
-RUN unzip -o /usr/local/bin/topcat-extra.jar -d /usr/local/bin topcat stilts \
+RUN curl -L https://www.star.bris.ac.uk/~mbt/topcat/topcat-extra.jar -O --output-dir /usr/local/bin \
+    && unzip -o /usr/local/bin/topcat-extra.jar -d /usr/local/bin topcat stilts \
     && sed -i -e 's/topcat-full/topcat-extra/g' /usr/local/bin/topcat /usr/local/bin/stilts \
     && chmod 644 /usr/local/bin/topcat-extra.jar \
     && chmod 755 /usr/local/bin/stilts /usr/local/bin/topcat
