@@ -1,3 +1,5 @@
+# minimal set of conda packages
+
 arrow-cpp=*=*cpu*
 libblas=*=*mkl*
 libcblas=*=*mkl*

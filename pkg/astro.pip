@@ -1,3 +1,5 @@
+# astronomy related pip packages
+
 adamet
 astroimtools
 astropandas
@@ -5,14 +7,14 @@ cadcdata
 cadctap
 cadcutils
 doppler
-# use pip imexam rather than conda to avoid qt/X11 deps
-imexam
 light-curve
 loess
 ltsfit
 nway
 ppxf
-# use pip spherical-geometry rather than conda (deps breaking)
-spherical-geometry
-tweakwcs
+skaha
 vos
+
+# somewhat conflict deps with jlab
+#jdaviz
+#tweakwcs

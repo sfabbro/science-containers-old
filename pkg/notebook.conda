@@ -1,3 +1,5 @@
+# jupyter and notebook related conda packages
+
 bash_kernel
 black
 bqplot
@@ -21,40 +23,43 @@ ipympl
 ipynbname
 ipython_genutils
 ipytree
-# buggy with jlab>4
-#ipyvolume
-#ipyvuetify
 ipywebrtc
 ipywidgets
 isort
 jupyter-archive
-# deprecated for dash>2.11
-#jupyter-dash
 jupyter-resource-usage
 jupyter_server>2
 jupyter-server-proxy
-jupyterlab
+jupyterlab<4
 jupyterlab_code_formatter
 jupyterlab-favorites
 jupyterlab-git
-#jupyterlab-lsp
-# not ready for jlab>4
-#jupyterlab-link-share
-#jupyterlab-system-monitor
-jupyterlab-variableinspector
+jupyterlab-h5web
+jupyterlab-lsp
+jupyterlab-myst
+jupyterlab_vim
 jupytext
 #nb_conda_kernels
 nbqa
 notebook
 nodejs
 papermill
-# buggy with jlab>4
-#vaex-jupyter
 pyvista
-pywwt
-# buggy with vuetify build
-#trame
+trame
 websockets
-wwt_jupyterlab_extension
 # useless?
 #xeus-python
+
+# not ready for jlab>4
+jedi-language-server
+jupyterlab-link-share
+jupyterlab-system-monitor
+jupyterlab-variableinspector
+python-lsp-server
+#pywwt
+#wwt_jupyterlab_extension
+vaex-jupyter
+
+# does not build properly on jlab
+ipyvolume
+ipyvuetify

@@ -1,23 +1,14 @@
-# restrictive deps
-#etna
-# needs torch and prophet
-#etna[all]
-# restrictive deps
-#fedot
-# with torch and tensorflow
-#fedot[extra]
-# restrictive deps
-#greykite
-# restrictive deps
-#neuralprophet
+# Tabular ML pip packages
+
+# restrict to tabular for now (torch<2)
+alibi[ray,shap]
+alibi-detect[prophet]
 
 carefree-learn
-clevercsv[full]
-gcastle
-getdaft
 gpboost
 iterative-stratification
+miceforest
 poniard
-pycaret>2.4
-pytorch-widedeep
-pytorch-tabular
+# pandas<1.5 and numpy<1.24 deps
+#pycaret>2.4
+tsfel

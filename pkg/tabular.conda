@@ -1,59 +1,75 @@
-autogluon
+# Tabular ML conda packages
+
+# still testing
+#atom-ml
 catboost
 category_encoders
 causalpy
+comet
+cleanlab
+crepes
 dirty_cat
 dowhy
-fastavro
-fastparquet
+dtreeviz
 feature_engine
 flaml
-hdbscan
+gensim
+# now in sklearn 1.3
+#hdbscan
 hmmlearn
+hnswlib
 imbalanced-learn
 imodels
 lightgbm
-# overly strict python / numpy / pandas versions# 
-#kats
+lime
+mapie
 metric-learn
+mlflow
 mlxtend
 modal
-modin
+nltk
+openai
+optuna
 neuralforecast
 ngboost
 opentsne
 # overly strict python<3.9
 #orbit-ml
-pandas
-parquet-tools
+pyod
 bioconda::phate
 pmdarima
-polars
+pot
 prophet
-pytables
-python-duckdb
-pytorch-forecasting
+ray-tune
 salesforce-merlion
+salib
 scikit-learn
 scikit-learn-intelex
+scikit-multilearn
+scikit-optimize
+shap
 sklearn-contrib-lightning
 sklearn-pandas
 sktime
 sktime-all-extras
+spacy
+spacy-lookups-data
 statsforecast
-statsmodels
+susi
+thinc
 tpot
 bioconda::trimap
+tsdownsample
 umap-learn
 u8darts-all
-vaex-hdf5
 vaex-ml
+visidata
+wandb
 xgboost=*=*cpu*
-zarr
 
 # below are extra deps (pycaret)
 deprecation
-numpy<1.24
+# deps on jlab<4 (still ok)
 plotly-resampler
 python-kaleido
 safetensors

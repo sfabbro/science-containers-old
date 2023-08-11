@@ -1,21 +1,25 @@
-# conda version of albumentations requires qt
+# pytorch-based ML conda packages
+
 albumentations
+# deps on torch<2 for autogluon-0.8.*
+#autogluon
 accelerate
 baal
 botorch
 captum
 diffusers
 faiss=*=*cpu*
+fastchan::fastai
 gpytorch
 hydra-core
 kornia
-#lightning-bolts
 lovely-tensors
 nvidia-apex=*=*cpu*
 pgmpy
 pymde
 pyro-ppl
 pytorch=*=*cpu*
+pytorch-forecasting
 pytorch_geometric
 pytorch-lightning
 pytorch-metric-learning

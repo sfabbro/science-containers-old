@@ -1,8 +1,10 @@
+# tensorflow ML based conda packages
+
 keras
 keras-cv
 keras-tuner
 nvidia-apex=*=*cpu*
 tensorboard
-tensorflow=2.11*=*cpu*
+tensorflow=2.12*=*cpu*
 tensorflow-hub
 xplique

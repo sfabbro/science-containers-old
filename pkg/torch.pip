@@ -1,5 +1,11 @@
+# pytorch-based ML pip packages
+
+gcastle
 pykeops
-#pytorch-tabnet
+# conda one requires pytorch<2
+pytorch-tabnet
+# deps on pytorch<2 and pandas<2
+#pytorch-tabular
 pytorch-widedeep
 sbi
 tensorwatch

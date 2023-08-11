@@ -1,6 +1,9 @@
+# various uncategorized conda packages
+
 aenum
 args
 boltons
+chardet
 cchardet
 clint
 cloudpickle
@@ -11,12 +14,15 @@ fastai::opencv-python-headless
 fqdn
 freetype-py
 gh
+gspread
 html2text
 imutils
 isoduration
 libclang
 nmslib
+oauth2client
 packaging
+parameterized
 protobuf
 psycopg2
 pybind11
@@ -28,6 +34,7 @@ pyzotero
 quarto
 requests-toolbelt
 sqlalchemy
+sphinx
 termcolor
 tiktoken
 toolz

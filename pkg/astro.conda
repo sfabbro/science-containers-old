@@ -1,3 +1,5 @@
+# astronomy related conda packages
+
 asdf
 asdf-coordinates-schemas
 astroalign
@@ -25,11 +27,14 @@ fitstools
 fitsverify
 gala
 galpy
+galsim
+galsim_extra
 ginga
 gnuastro
 gwcs
 halotools
 healpy
+imexam
 mhealpy
 hips
 lightkurve
@@ -46,6 +51,7 @@ pyvo
 regions
 reproject
 sep
+spherical-geometry
 skyfield
 skypy
 sncosmo

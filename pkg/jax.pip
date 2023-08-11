@@ -1,3 +1,6 @@
-dm-pix
+# ML and numerics jax based conda packages
+
+# deps on chex
+#dm-pix
 objax
 rax

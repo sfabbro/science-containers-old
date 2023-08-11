@@ -1,5 +1,9 @@
+# tensorflow ML based pip packages
+
+autokeras
 edward2
 gpflow
+keras-nlp
 neural-structured-learning
 scikeras
 tensorflow-addons
