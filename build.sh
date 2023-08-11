@@ -33,19 +33,24 @@ make_dockerfile() {
     # gpu: hack to force conda packages for their cuda versions
     if [[ ${container} =~ gpu ]]; then
 	sed -i -e "s|cpu|cu|g" conda.list
-	grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/cuda.conda >> conda.list
-	cat ${SRC_DIR}/pkg/cuda.channels >> channels.list
+	for l in apt conda pip channels; do
+	    [[ -e ${SRC_DIR}/pkg/cuda.${l} ]] && \
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/cuda.${l} >> ${l}.list
+	done
     fi
 
     # notebook: add specific packages
     if [[ ${container} =~ notebook ]]; then
-	grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.conda >> conda.list
-	grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.pip >> pip.list
-	# buggy extension (apr 2023)
-	     # hack to add nvdashboard
-	#    if [[ ${container} =~ gpu ]]; then
-	#	echo "jupyterlab-nvdashboard" >> conda.list
-	#    fi
+	for l in conda pip npm; do
+	    [[ -e ${SRC_DIR}/pkg/notebook.${l} ]] && \
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.${l} >> ${l}.list
+	done
+
+	# buggy extension (08/2023)
+	# hack to add nvdashboard
+	#if [[ ${container} =~ gpu ]]; then
+	#    echo "jupyterlab-nvdashboard" >> conda.list
+	#fi
     fi
 
     # now put together the conda environment file
