@@ -30,5 +30,6 @@ simpy
 sqlite
 statsmodels
 sympy
+tables-io
 vaex-hdf5
 zarr

@@ -4,11 +4,8 @@
 alibi[ray,shap]
 alibi-detect[prophet]
 
-carefree-learn
 gpboost
 iterative-stratification
 miceforest
 poniard
-# pandas<1.5 and numpy<1.24 deps
-#pycaret>2.4
 tsfel

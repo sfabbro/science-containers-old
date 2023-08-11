@@ -6,6 +6,7 @@ astropandas
 cadcdata
 cadctap
 cadcutils
+ceci
 doppler
 light-curve
 loess
@@ -13,8 +14,10 @@ ltsfit
 nway
 ppxf
 skaha
+tweakwcs
 vos
 
 # somewhat conflict deps with jlab
 #jdaviz
-#tweakwcs
+#pz-rail-hub
+#pz-rail-pipelines

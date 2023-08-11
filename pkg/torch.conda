@@ -4,7 +4,8 @@ albumentations
 # deps on torch<2 for autogluon-0.8.*
 #autogluon
 accelerate
-baal
+# deps 
+#baal
 botorch
 captum
 diffusers
