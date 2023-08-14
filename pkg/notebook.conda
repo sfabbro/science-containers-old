@@ -14,7 +14,6 @@ fastai::nbdev-scipy
 fastai::nbdev-stdlib
 fastai::nbprocess
 genai
-hdf5plugin
 ipyaladin
 ipyevents
 ipygany
@@ -35,31 +34,35 @@ jupyterlab_code_formatter
 jupyterlab-favorites
 jupyterlab-git
 jupyterlab-h5web
-jupyterlab-lsp
-jupyterlab-myst
+# still a bit buggy
+#jupyterlab-lsp
+#jedi-language-server
+#jupyterlab-system-monitor
+#python-lsp-server
+# only in jlab>4
+#jupyterlab-myst
 jupyterlab_vim
 jupytext
+mamba_gator
 #nb_conda_kernels
 nbqa
 notebook
 nodejs
 papermill
 pyvista
-trame
+sktime-all-extras
+#trame
+voila
 websockets
 # useless?
 #xeus-python
+yt
 
 # not ready for jlab>4
-jedi-language-server
-jupyterlab-link-share
-jupyterlab-system-monitor
-jupyterlab-variableinspector
-python-lsp-server
-#pywwt
-#wwt_jupyterlab_extension
-vaex-jupyter
-
-# does not build properly on jlab
 ipyvolume
 ipyvuetify
+jupyterlab-link-share
+jupyterlab-variableinspector
+#pywwt
+vaex-jupyter
+#wwt_jupyterlab_extension

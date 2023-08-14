@@ -14,10 +14,6 @@ ltsfit
 nway
 ppxf
 skaha
+spherical-geometry
 tweakwcs
 vos
-
-# somewhat conflict deps with jlab
-#jdaviz
-#pz-rail-hub
-#pz-rail-pipelines

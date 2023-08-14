@@ -20,7 +20,6 @@ pgmpy
 pymde
 pyro-ppl
 pytorch=*=*cpu*
-pytorch-forecasting
 pytorch_geometric
 pytorch-lightning
 pytorch-metric-learning

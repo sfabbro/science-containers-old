@@ -8,6 +8,7 @@ emcee
 fastavro
 fastparquet
 george
+hdf5plugin
 h5py
 iminuit
 lmfit

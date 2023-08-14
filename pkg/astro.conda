@@ -50,7 +50,6 @@ pyvo
 regions
 reproject
 sep
-spherical-geometry
 skyfield
 skypy
 sncosmo
@@ -61,4 +60,5 @@ statmorph
 stsynphot
 synphot
 vaex-astro
-yt
+# moved to notebook
+#yt

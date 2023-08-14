@@ -3,6 +3,7 @@
 # requires jupyterlab<4
 #jupyterlab_hdf
 #jupyterlab_sublime
+
+jdaviz
 jupyterlab-quarto
 jupyterlab_rise
-

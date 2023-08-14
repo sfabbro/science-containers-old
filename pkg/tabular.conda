@@ -50,7 +50,8 @@ shap
 sklearn-contrib-lightning
 sklearn-pandas
 sktime
-sktime-all-extras
+# needs more notebook
+#sktime-all-extras
 spacy
 spacy-lookups-data
 statsforecast
@@ -64,4 +65,3 @@ vaex-ml
 visidata
 wandb
 xgboost=*=*cpu*
-
