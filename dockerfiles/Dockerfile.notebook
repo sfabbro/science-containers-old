@@ -8,9 +8,9 @@ COPY jupyter_server_config.py docker_healthcheck.py /etc/jupyter/
 HEALTHCHECK --interval=5s --timeout=3s --start-period=5s --retries=3 \
     CMD /etc/jupyter/docker_healthcheck.py || exit 1
 
-# language server
-COPY npm.list .
-RUN npm install --save-dev $(cat npm.list)
+# language server: still a bit buggy
+#COPY npm.list .
+#RUN npm install --save-dev $(cat npm.list)
 
 # ensure we build jupyter extensions and cleanup
 RUN jupyter lab build \
