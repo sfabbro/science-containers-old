@@ -1,5 +1,3 @@
-
-
 # CANFAR Science Platform Documentation
 
 # Table of Contents
@@ -15,62 +13,62 @@
 
 Documentation for new users can be found here: [Documentation For New Users](https://canfar-scienceportal.readthedocs.io/en/latest/) 
 
-The CANFAR Portal can be found here:  [CANFAR Science Portal](https://www.canfar.net)
-On the portal are the [Science Portal](https://www.canfar.net/science-portal) and the [Storage UI](https://www.canfar.net/storage/arc/list/).
+The portal to the CANFAR Science Platform can be found here:  [CANFAR Science Portal](https://www.canfar.net) where you can access the [Science Platform](https://www.canfar.net/science-portal) and the [Storage UI](https://www.canfar.net/storage/arc/list/).
 
 A Canadian Astronomy Data Centre (CADC) Account and authorization to use the portal are required first.
-
-To request a CADC Account:  https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/auth/request.html
-
-To request authorization to use the science portal, send an email to [support@canfar.net](mailto:support@canfar.net)
+- To request a CADC Account:  https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/auth/request.html
+- To request authorization to use the science portal, send an email to [support@canfar.net](mailto:support@canfar.net)
 
 ## Interactive Sessions
 
-The CANFAR Science Portal allows users to run both pre-built, shared containers or private, custom containers.  Users publish container images to the CANFAR Image Registry at https://images.canfar.net
+The CANFAR Science Platform allows users to run both pre-built, shared containers or private, custom containers. Users can publish container images to the CANFAR Container Images Registry at https://images.canfar.net .
 
-Logins to the Image Registry are done through the OpenID Connect Login button using your CADC/CANFAR crendentials.  Contact the project image coordinator to obtain authorization to publish images to that project.
+Logins to the Images Registry are done through the OpenID Connect Login button using your CADC crendentials. Contact the project image coordinator to obtain authorization to publish images to that project.
 
-Details of image publishing for use in the CANFAR science portal can be found here:  [Publishing](../containers)
+Details of image publishing for use in the CANFAR science platform can be found here: [Publishing](PUBLISHING.md)
 
+There are a few types of Interactive Sessions on the platform:
 ### Jupyter Notebooks
 
-The CANFAR Science Portal allows for the creation of Jupyter Notebooks.  [Jupyter](https://jupyter.org/)
-
 ### CARTA 
+[CARTA](https://cartavis.org/) (Cube Analysis and Rendering Tool for Astronomy) sessions will run natively in the browser
 
-The CANFAR Science Portal allows for the creation of CARTA (Cube Analysis and Rendering Tool for Astronomy) sessions.  [CARTA](https://cartavis.org/) 
+### Desktop
 
-### ARCADE Desktop
+For running non browser-native applications in the Science Platform, a browser Desktop session can be launched.
 
-For running CASA and other non-browser applications in the Science Platform.
+- Desktop documentation and tutorials are on the [User Documentation](https://canfar-scienceportal.readthedocs.io/en/latest/NewUser/LaunchDesktop.html)
+- Launching a CASA window in the Desktop YouTube tutorial:  [YouTube Tutorial](https://youtu.be/GDDQ3jKbldU)
 
-- ARCADE documentation and tutorials: [ARCADE](https://github.com/canfar/arcade)
-- Launching a CASA window in ARCADE YouTube tutorial:  [YouTube Tutorial](https://youtu.be/GDDQ3jKbldU)
+### Contributed
+
+Contributed sessions are user-customised web applications, which are not maintained by CANFAR. There are a few examples such as VSCode and Pluto notebook on the browser. The only requirement for a container is to ensure the web application to be launched with a `/skaha/startup.sh` script in the container, and the web application running on port 5000.
 
 ## Storage
 
-All sessions and applications that run in the Science Portal have filesystem access to the same storage, mounted at `/arc`.  Within are `/arc/home` (contains all home directories) and `/arc/projects` (for project use).  We encourage the use of `/arc/projects` for most data, and `/arc/home` for personalized configuration.
+All sessions and applications that run in the Science Platform have filesystem access to the same storage, mounted at `/arc`. Within are `/arc/home` (contains all home directories) and `/arc/projects` (for project use).  We encourage the use of `/arc/projects` for most data, and `/arc/home` for personalized configuration.
 
-`arc` is accesible through an API based on the IVOA VOSpace specification.  The following list the ways it can be accessed:
-- Through the `/arc` filesystem mount on all portal sessions and ARCADE windows.
+An efficient way to access the `arc` storage outside the Science Platform is through `sshfs`. Here is the [documentation](https://canfar-scienceportal.readthedocs.io/en/latest/General_tools/Using_sshfs.html).
+
+`arc` is also accesible through an API based on the IVOA VOSpace specification. The following list the ways it can be accessed beyond the use of the Science Portal and sshfs:
+
 - Using the storage management UI in CANFAR: https://www.canfar.net/storage/arc/list
 - Using the [CADC Python libraries](https://github.com/opencadc/vostools/tree/master/vos)
-- Using sshfs [documentation](https://github.com/canfar/arcade/tree/master/arcade-tutorial)
 - Using the `/arc/files` endpoint [documentation](https://ws-uv.canfar.net/arc)
 
 Please take care to protect sensitive information by ensuring it is not publicly accessible.
 
 ## Groups and Permissions
 
-Projects are encouraged to use groups to manage access to resources, including files and directories in arc project storage, mounted at `/arc/projects` in every skaha session.
+Projects are encouraged to use groups to manage access to resources, including files and directories in arc project storage, mounted at `/arc/projects` in every session.
 
-Groups and their memberships can be managed through the CANFAR groups web portal, here: https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/groups/
+Groups and their memberships can be managed through the CANFAR groups web interface, here: https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/groups/
 
-Once created, groups can be assinged to files and directories in arc storage.  This can be done the CANFAR storage web portal, here:  https://www.canfar.net/storage/arc/list
+Once created, groups can be assigned to files and directories in arc storage.  This can be done the CANFAR storage web portal, here:  https://www.canfar.net/storage/arc/list
 
 Groups can be assigned as either `read-only` or `read-write`.
 
-More sophisticated mangement of groups, including setting default groups for a given project directory, can be done on the command line in the science portal, and is explained in the section below.
+More sophisticated management of groups, including setting default groups for a given project directory, can be done on the command line in the science portal, and is explained in the section below.
 
 ### Command Line Group Management
 
@@ -155,11 +153,11 @@ setfacl -R -d -m group:{group-name}:rwx {read-write-dir}
 
 ## Programmatic Access
 
-The skaha API definition and science platform service are here:  https://ws-uv.canfar.net/skaha
+The session launching and management is through the `skaha` service The skaha API definition and science platform service are here:  https://ws-uv.canfar.net/skaha
 
 ### Authentication
 
-All requests to the skaha API must be made with CADC/CANFAR credentials.  In the science portal the credentials are handled with cookies, but for programatic access, either x.509 client certificates or authorization tokens must be used.
+All requests to the skaha API must be made with CADC credentials.  In the science portal the credentials are handled with cookies, but for programatic access, either x.509 client certificates or authorization tokens must be used.
 
 #### Authorization Tokens
 
@@ -189,7 +187,7 @@ Please contact us before making use of the 'headless job' support--we are increm
 
 #### Create an image
 
-Create an image as per the regular process of making containers available in the platform:  [Publishing](../containers)
+Create an image as per the regular process of making containers available in the platform:  [Publishing](PUBLISHING.md)
 
 However, label it as `headless` in https://images.canfar.net to make it available for headless job launching.
 
@@ -235,14 +233,14 @@ Dicussions of issues and platform features take place in the Science Platform Sl
 
 Reporting of bugs and new feature requests can also be made as github issues:  https://github.com/opencadc/skaha/issues
 
-Contributions to the platform (including updates or corrections to the documentation) can be submitted as pull requests to this github project.
+Contributions to the platform (including updates or corrections to the documentation) can be submitted as pull requests to this GitHub repository.
 
 General inquiries can be made to [support@canfar.net](mailto:support@canfar.net)
 
 ## FAQ
 
 * ***My session is stuck in the `Pending` state*** - This can imply that the platform is unable to launch your image.  There are a number of potential causes:
-   * Often skaha fails to authorize you to https:images.canfar.net due to an expired `CLI Secret`.  Try resetting this value by logging into https://images.canfar.net (using the OIDC Login button), going to your User Profile, and updating your CLI Secret.  Once done you should delete the Pending session and try launching it again.
+   * Often skaha fails to authorize you to https://images.canfar.net due to an expired `CLI Secret`.  Try resetting this value by logging into https://images.canfar.net (using the OIDC Login button), going to your User Profile, and updating your CLI Secret.  Once done you should delete the Pending session and try launching it again.
     * If the image is proprietary and the CLI Secret update did not work, check with your project administrator to ensure you have been granted access to the project in https://images.canfar.net
     * The session could be in a Pending state waiting for resources so that it can be scheduled.
     * More information about the reason for the Pending state can be found using the logging mechanisms explained in [Programmatic Access](#programmatic-access).
