@@ -13,6 +13,12 @@ push_container astroml-gpu
 push_container astroml-gpu-vscode
 push_container astroml-gpu-notebook
 
-push_container astrapids-gpu
-push_container astrapids-gpu-notebook
-push_container astrapids-gpu-vscode
+push_container automl
+push_container automl-notebook
+
+push_container automl-gpu
+push_container automl-gpu-notebook
+
+#push_container astrapids-gpu
+#push_container astrapids-gpu-notebook
+#push_container astrapids-gpu-vscode
