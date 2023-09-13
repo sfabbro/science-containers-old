@@ -16,6 +16,10 @@ hydra-core
 kornia
 lovely-tensors
 nvidia-apex=*=*cpu*
+mmcv=*=*cpu*
+mmdet
+mmsegmentation
+openmim
 pgmpy
 pymde
 pyro-ppl
