@@ -15,11 +15,11 @@ pandas
 plotly
 plotly-resampler
 polars
+pycaret
 pyod
 pytorch-forecasting
 pytorch=1.13*=*cpu*
 safetensors
-schemdraw=0.15
 scikit-learn<1.3
 scikit-plot
 seaborn
