@@ -3,5 +3,3 @@
 carefree-learn
 pytorch-tabular
 pytorch-widedeep
-# pandas<1.5 and numpy<1.24 deps
-pycaret>2.4
