@@ -143,4 +143,6 @@ push_container() {
     local container=$1
     docker tag ${OWNER}/${container}:latest ${REGISTRY}/${OWNER}/${container}:${TAG}
     docker push ${REGISTRY}/${OWNER}/${container}:${TAG}
+    docker tag ${OWNER}/${container}:latest ${REGISTRY}/${OWNER}/${container}:latest
+    docker push ${REGISTRY}/${OWNER}/${container}:latest
 }
