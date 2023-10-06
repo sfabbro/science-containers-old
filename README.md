@@ -9,11 +9,11 @@ Curently the repository contains basic build system to build a hierarchy of defa
 ```
 	                    Ubuntu LTS
 	                        |
-		                   base (headless)
-	      __________________|_ _ _ _ _ _ _ _
-         |                                  | 
-	  astroml (headless)            Desktop Application (desktop-app)
-         |
+		                base (headless)
+	    __________________|_ _ _ _ _ _ _ _
+        |								 | 
+	astroml (headless)				Desktop Application (desktop-app)
+        |
 astroml-notebook (notebook) 
 astroml-vscode   (contributed)
 astroml-terminal (desktop-app)
