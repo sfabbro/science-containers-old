@@ -8,10 +8,10 @@ Curently the repository contains basic build system to build a hierarchy of defa
 
 ```
 	                    Ubuntu LTS
-	                        |
+	                    	|
 		            base (headless)
 		____________________|_ _ _ _ _ _ _ _
-		|								 | 
+		|                                   | 
 astroml (headless)			Desktop Application (desktop-app)
 		|
 astroml-notebook (notebook) 
