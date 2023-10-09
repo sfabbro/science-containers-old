@@ -3,5 +3,6 @@ datascience
 jax
 misc
 tabular
+topcat
 torch
 viz
