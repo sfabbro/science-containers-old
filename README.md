@@ -10,13 +10,14 @@ Curently the repository contains basic build system to build a hierarchy of defa
 	                    Ubuntu LTS
 	                    	|
 		            base (headless)
-		____________________|_ _ _ _ _ _ _ _
-		|                                   | 
+	                    	|
+		_____________________ _ _ _ _ _ _ _
+		|                                  | 
 astroml (headless)			Desktop Application (desktop-app)
 		|
 astroml-notebook (notebook) 
 astroml-vscode   (contributed)
-astroml-terminal (desktop-app)
+astroml-desktop  (desktop-app)
  ```
 
 - The `base` is a `headless` container are built from a vanilla Ubutu LTS, with extra operating system installed (compilers, development libraries), and conda install.
