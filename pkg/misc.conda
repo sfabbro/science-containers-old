@@ -47,6 +47,7 @@ requests-toolbelt
 sqlalchemy
 sphinx
 termcolor
+terminaltables
 tiktoken
 toolz
 tqdm

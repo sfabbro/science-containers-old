@@ -41,6 +41,11 @@ jupyterlab-h5web
 #python-lsp-server
 # only in jlab>4
 #jupyterlab-myst
+#jupyterlab-unfold
+#perspective-parquet
+#jupyterlab-deck
+#glue-jupyterlab
+
 jupyterlab_vim
 jupytext
 mamba_gator

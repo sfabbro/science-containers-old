@@ -8,7 +8,7 @@ pytorch-tabnet
 #pytorch-tabular
 pytorch-widedeep
 sbi
-tensorwatch
+#tensorwatch
 #torchdiffeq
 torchdrift
 torchensemble

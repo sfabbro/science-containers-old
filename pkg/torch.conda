@@ -8,7 +8,9 @@ accelerate
 #baal
 botorch
 captum
+#deepspeed
 diffusers
+fairscale=*=*cpu*
 faiss=*=*cpu*
 fastchan::fastai
 gpytorch
