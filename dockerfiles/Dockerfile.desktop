@@ -1,6 +1,7 @@
 
 # Create entrypoint script for desktop
 RUN mkdir /skaha
-COPY --chmod=755 xterm_start.sh /skaha/init.sh
+COPY xterm_start.sh /skaha/init.sh
+RUN chmod 755 /skaha/init.sh
 
 ENTRYPOINT [ "/skaha/init.sh" ]
