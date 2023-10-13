@@ -1,3 +1,4 @@
+
 # install topcat with parquet and create stilts/topcat scripts
 RUN curl -L https://www.star.bris.ac.uk/~mbt/topcat/topcat-extra.jar -O --output-dir /usr/local/bin \
     && unzip -o /usr/local/bin/topcat-extra.jar -d /usr/local/bin topcat stilts \

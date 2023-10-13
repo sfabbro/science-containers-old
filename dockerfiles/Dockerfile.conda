@@ -7,9 +7,7 @@ RUN sed -i -e '/conda-forge/d' channels.list \
     || echo "no new channels to add"
 
 COPY env.yml .
-RUN mamba update --all --yes \
-    && mamba env update -n base --file env.yml \
-    && mamba clean --all --quiet --force --yes
+RUN conda-env-update.sh env.yml
 
 COPY pinned .
 RUN touch ${CONDA_DIR}/conda-meta/pinned \

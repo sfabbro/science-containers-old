@@ -1,3 +1,4 @@
+
 RUN curl -s https://api.github.com/repos/boxboat/fixuid/releases/latest \
     	 | grep 'browser_download_url.*-amd64.tar.gz' \
     	 | awk '{print $2}' | xargs -n1 curl -fsSL | tar -C /usr/local/bin -xzf - \
@@ -21,5 +22,4 @@ RUN curl -sL https://github.com/coder/code-server/raw/main/ci/release-image/entr
 EXPOSE 5000
 RUN mkdir /skaha
 COPY vscode_start.sh /usr/local/bin/vscode_start.sh
-RUN chmod a+x /usr/local/bin/vscode_start.sh
 ENTRYPOINT [ "/usr/local/bin/vscode_start.sh" ]

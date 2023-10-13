@@ -1,5 +1,4 @@
 
-RUN jupyter server --generate-config
 COPY jupyter_server_config.py docker_healthcheck.py /etc/jupyter/
 
 # HEALTHCHECK documentation: https://docs.docker.com/engine/reference/builder/#healthcheck

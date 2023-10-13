@@ -1,20 +1,10 @@
 
-
-ENV DEBIAN_FRONTEND=noninteractive
+COPY apt-install.sh conda-env-update.sh /usr/local/bin/
 
 # install bunch of packages
 COPY apt.list .
+RUN apt-install.sh apt.list
 
-# update, add ppa, install and cleanup
-RUN apt-get update --yes --quiet --fix-missing \
-    && apt-get install --quiet --yes software-properties-common \
-    && apt-get upgrade --yes --quiet \
-    && add-apt-repository ppa:cartavis-team/carta \
-    && apt-get update --yes --quiet \
-    && apt-get install --yes --quiet $(cat apt.list) \
-    && apt-get clean --yes \
-    && apt-get autoremove --purge --quiet --yes \
-    && rm -rf /var/lib/apt/lists/* /var/tmp/*
 # nsswitch for correct sss lookup
 ADD nsswitch.conf /etc/
 
@@ -32,11 +22,10 @@ RUN set -x \
         --root-prefix="${CONDA_DIR}" \
         --prefix="${CONDA_DIR}" \
         --yes \
-        python=${PYTHON_VERSION} mamba pixi
+        python=${PYTHON_VERSION} mamba
 
 # conda profile scripts by default
 RUN ln -s ${CONDA_DIR}/etc/profile.d/conda.sh /etc/profile.d/conda.sh
-
 
 COPY channels.list .
 RUN sed -i -e '/conda-forge/d' channels.list \
@@ -45,16 +34,16 @@ RUN sed -i -e '/conda-forge/d' channels.list \
        | xargs -n1 conda config --system --prepend channels \
     || echo "no new channels to add"
 
+# install minimimal base conda environment
 COPY env.yml .
-RUN mamba update --all --yes \
-    && mamba env update -n base --file env.yml \
-    && mamba clean --all --quiet --force --yes
+RUN conda-env-update.sh env.yml
 
 COPY pinned .
 RUN touch ${CONDA_DIR}/conda-meta/pinned \
     && cat pinned ${CONDA_DIR}/conda-meta/pinned | sort | uniq > pinned.new \
     && cp pinned.new ${CONDA_DIR}/conda-meta/pinned
 
+# save packages files into container
 COPY Dockerfile .
 RUN mkdir -p /build-info \
     && for f in env.yml apt.list Dockerfile; do \
