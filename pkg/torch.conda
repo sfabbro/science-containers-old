@@ -1,16 +1,14 @@
 # pytorch-based ML conda packages
 
 albumentations
-# deps on torch<2 for autogluon-0.8.*
-#autogluon
 accelerate
-# deps 
-#baal
+baal
 botorch
 captum
 #deepspeed
 diffusers
-fairscale=*=*cpu*
+# requires torch<2
+#fairscale=*=*cpu*
 faiss=*=*cpu*
 fastchan::fastai
 gpytorch

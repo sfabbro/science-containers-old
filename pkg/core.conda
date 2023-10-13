@@ -1,9 +1,18 @@
 # minimal set of conda packages
 
-arrow-cpp=*=*cpu*
+conda-lock
+conda-libmamba-solver
 libblas=*=*mkl*
 libcblas=*=*mkl*
 liblapack=*=*mkl*
 liblapacke=*=*mkl*
 numexpr=*=*mkl*
-pyarrow=*=*cpu*
+numpy<1.25
+openblas
+pip
+pip-tools
+pipenv
+pixi
+poetry
+python=%PYTHON_VERSION%.*
+scipy

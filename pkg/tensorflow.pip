@@ -1,13 +1,12 @@
 # tensorflow ML based pip packages
 
-autokeras
-edward2
+#autokeras
+#edward2
 gpflow
-keras-nlp
+#keras-nlp
 neural-structured-learning
 scikeras
-tensorflow-addons
+#tensorflow-addons
 tensorflow-decision-forests
-tensorflow-gnn
-tensorflow-probability
-tensorflow-similarity
+#tensorflow-gnn
+#tensorflow-similarity

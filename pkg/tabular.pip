@@ -1,8 +1,9 @@
 # Tabular ML pip packages
 
 # restrict to tabular for now (torch<2)
-alibi[ray,shap]
-alibi-detect[prophet]
+# brings down pillow, scikit-image, shap
+#alibi[ray,shap]
+#alibi-detect[prophet]
 
 gpboost
 iterative-stratification

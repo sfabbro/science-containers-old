@@ -1,5 +1,5 @@
 # conda packages requiring exclusively CUDA
 
-cudatoolkit=11.2*
+cudatoolkit=%CUDA_VERSION%*
 nccl
 nvtop

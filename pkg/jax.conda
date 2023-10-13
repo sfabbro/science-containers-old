@@ -1,13 +1,12 @@
 # ML and numerics jax based conda packages 
 
 blackjax
-# requires numpy>=1.25 conflicts with numba
-#chex
+chex
 dm-haiku
 equinox
 flax
 jax
-jaxlib=0.4*=*cpu*
+jaxlib=*=*cpu*
 jaxopt
 jaxtyping
 numpyro

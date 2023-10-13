@@ -1,5 +1,6 @@
 # Dataframes, fast formats, numerics conda packages
 
+arrow-cpp=*=*cpu*
 cvxpy
 dask
 dynesty
@@ -13,12 +14,10 @@ h5py
 iminuit
 lmfit
 modin
-# restrict for deps on numba
-numpy<1.25
-openblas
 pandas
 parquet-tools
 polars
+pyarrow=*=*cpu*
 pymc
 pytables
 python-duckdb
@@ -26,7 +25,6 @@ pywavelets
 scikit-image
 scikit-posthocs
 scikit-spatial
-scipy
 simpy
 sqlite
 statsmodels

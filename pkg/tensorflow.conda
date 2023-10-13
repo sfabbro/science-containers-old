@@ -6,5 +6,6 @@ keras-tuner
 nvidia-apex=*=*cpu*
 tensorboard
 tensorflow=2.12*=*cpu*
+tensorflow-probability
 tensorflow-hub
 xplique

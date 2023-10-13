@@ -34,11 +34,14 @@ jupyterlab_code_formatter
 jupyterlab-favorites
 jupyterlab-git
 jupyterlab-h5web
+
 # still a bit buggy
 #jupyterlab-lsp
 #jedi-language-server
 #jupyterlab-system-monitor
 #python-lsp-server
+#mamba_gator
+
 # only in jlab>4
 #jupyterlab-myst
 #jupyterlab-unfold
@@ -48,7 +51,6 @@ jupyterlab-h5web
 
 jupyterlab_vim
 jupytext
-mamba_gator
 #nb_conda_kernels
 nbqa
 notebook
