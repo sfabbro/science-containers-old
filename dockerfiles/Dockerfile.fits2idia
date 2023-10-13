@@ -1,0 +1,2 @@
+RUN add-apt-repository ppa:cartavis-team/carta
+RUN apt-install.sh fits2idia
