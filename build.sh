@@ -22,68 +22,63 @@ make_dockerfile() {
     stack=${stack%-vscode}
     stack=${stack%-gpu}
 
-    echo "conda-forge" > channels.list
-    
     for p in $(cat ${SRC_DIR}/stacks/${stack}); do
 	# construct a list of packages for conda/pip
 	for l in apt conda pip channels; do
 	    [[ -e ${SRC_DIR}/pkg/${p}.${l} ]] && \
 		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/${p}.${l} >> ${l}.list
 	done
-	# add specific dockerfile
+	# add stack specific dockerfile
 	[[ -e ${SRC_DIR}/dockerfiles/Dockerfile.${p} ]] &&  \
 	    cat ${SRC_DIR}/dockerfiles/Dockerfile.${p} >> Dockerfile.stack
     done
 
-    # gpu: hack to force conda packages for their cuda versions
+    # gpu: change conda package builds from cpu for their cuda versions
     if [[ ${name} =~ gpu ]]; then
 	sed -i -e "s|cpu|cu|g" conda.list
 	for l in apt conda pip channels; do
 	    [[ -e ${SRC_DIR}/pkg/cuda.${l} ]] && \
 		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/cuda.${l} >> ${l}.list
 	done
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.cuda >> Dockerfile.stack
     fi
 
-    # notebook: add specific packages
+    # session interfaces
+    # notebook: add specific notebook, lab and extensions packages
     if [[ ${name} =~ notebook ]]; then
 	for l in conda pip npm; do
 	    [[ -e ${SRC_DIR}/pkg/notebook.${l} ]] && \
 		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.${l} >> ${l}.list
 	done
-
-	# buggy extension (08/2023)
-	# hack to add nvdashboard
-	#if [[ ${name} =~ gpu ]]; then
-	#    echo "jupyterlab-nvdashboard" >> conda.list
-	#fi
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.notebook >> Dockerfile.stack
+    elif [[ ${name} =~ vscode ]]; then
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.vscode >> Dockerfile.stack
+    elif  [[ ${name} =~ desktop ]]; then
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.desktop >> Dockerfile.stack
+    else
+	echo "Unknown sesssion requested: ${name}" >&2
     fi
 
-    # now put together the conda environment file
+    # put together the conda environment file
+    echo >> env.yml "name: base"
 
     # first compile list of all channels
-    echo >> env.yml "name: base"
-    echo >> env.yml "channels:"
-    cat channels.list \
-	| uniq | awk 'NF' \
-	| sed -e 's|\(.*\)|  - \1|g' \
-	  >> env.yml
+    touch channels.list
+    cat channels.list | uniq | awk 'NF' > channels.list.new
+    mv channels.list.new channels.list
+    if [[ $(wc -l channels.list | awk '{print $1}') -gt 0 ]]; then
+        echo >> env.yml "channels:"
+	cat channels.list | sed -e 's|\(.*\)|  - \1|g'  >> env.yml
+    fi
 
     # add the list of conda packages
-    cat >> env.yml <<EOF
-dependencies:
-  - conda-lock
-  - pip
-  - pip-tools
-  - pipenv
-  - pixi
-  - poetry
-  - python=${PYTHON_VERSION}.*
-EOF
-
-    [[ -e conda.list ]] && cat conda.list \
+    echo >> env.yml "dependencies:"
+    if [[ -e conda.list ]] && [[ $(wc -l conda.list | awk '{print $1}') -gt 0 ]]; then
+	cat conda.list \
 	    | sort | uniq | awk 'NF' \
 	    | sed -e 's|\(.*\)|  - \1|g' \
 		  >> env.yml
+    fi
 
     # add the list of pip packages
     if [[ -e pip.list ]] && [[ $(wc -l pip.list | awk '{print $1}') -gt 0 ]]; then
@@ -93,6 +88,10 @@ EOF
 	    | sed -e 's|\(.*\)|     - \1|g' \
 		  >> env.yml
     fi
+    sed -i \
+	-e "s|%PYTHON_VERSION%|${PYTHON_VERSION}|g" \
+	-e "s|%CUDA_VERSION%|${CUDA_VERSION}|g"  \
+	env.yml
 
     # create the pinned packages file from the env.yml file
     awk '/=/{print $2}' env.yml |  sed 's|=| |g' > pinned
@@ -109,12 +108,9 @@ EOF
 	    cat ${SRC_DIR}/dockerfiles/Dockerfile.apt >> Dockerfile
 	[[ -e env.yml ]] && \
 	    cat ${SRC_DIR}/dockerfiles/Dockerfile.conda >> Dockerfile
-	[[ -e Dockerfile.stack ]] && cat Dockerfile.stack >> Dockerfile
     fi
-    
-    # desktop: add init files
-    [[ ${name} =~ desktop ]] && cat ${SRC_DIR}/dockerfiles/Dockerfile.desktop >> Dockerfile
-    
+    [[ -e Dockerfile.stack ]] && cat Dockerfile.stack >> Dockerfile
+
     cp ${SRC_DIR}/dockerfiles/files/* .
 }
 
