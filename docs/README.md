@@ -42,6 +42,11 @@ For running non browser-native applications in the Science Platform, a browser D
 
 Contributed sessions are user-customised web applications, typically not maintained by CANFAR. This can be anything, such as a [VSCode server](https://github.com/coder/code-server) and [Pluto notebook](https://plutojl.org/) for the Julia language. 
 
+The rules of building a container of type "contributed" on the CANFAR Science Platform are:
+1. Incoming trafic will be over http (which may include websocket trafic) on port 5000
+1. From the point of view of the container, requests will be received at the root path (/), but URLs in the browser will look like https:///, where <host> and <path> are subject to change. This path will initially be https://ws-uv.canfar.net/sessions/contrib/<sessionid>
+1. The instance will be started by a script in the image that must be available at /skaha/startup.sh and will be passed 1 parameter: the sessionid.
+
 ## Batch Jobs
 
 There is limited possibility to run a batch job, which can be understood of a non-interactive executable launched on a headless container. Please contact us before making use of the headless job support--we are incrementally adding support for batch processing in the science platform. See the specific [documentation](HEADLESS.md). This is still experimental.
