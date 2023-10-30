@@ -14,6 +14,7 @@
 
     <Exclude>
         <Filename>exo-terminal-emulator.desktop</Filename>
+        <Filename>terminal.desktop</Filename>
     </Exclude>
 
     <Layout>
@@ -22,7 +23,6 @@
         <Filename>exo-file-manager.desktop</Filename>
         <Filename>kill-session.desktop</Filename>
         <Filename>exo-mail-reader.desktop</Filename>
-        <Filename>terminal.desktop</Filename>
         <Filename>exo-web-browser.desktop</Filename>
         <Separator/>
         <Menuname>Preferences</Menuname>
