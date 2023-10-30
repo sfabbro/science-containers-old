@@ -4,7 +4,7 @@ Please contact us before making use of the 'headless job' support--we are increm
 
 #### Create an image
 
-Create an image as per the regular process of making containers available in the platform:  [Publishing](PUBLISHING.md)
+Create an image as per the regular process of making containers available in the platform:  [Publishing](https://github.com/opencadc/science-containers/blob/main/docs/CONTAINERS.md#publishing-skaha-containers)
 
 However, label it as `headless` in https://images.canfar.net to make it available for headless job launching.
 
