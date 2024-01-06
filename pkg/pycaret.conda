@@ -1,9 +1,3 @@
 # Auto ML conda packages and dependencies for pip ones not in misc
 
-autogluon
-autoboost
-evalml
-flaml
-#pycaret
-pytorch-forecasting
-tpot
+pycaret

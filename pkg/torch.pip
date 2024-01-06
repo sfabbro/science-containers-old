@@ -2,15 +2,14 @@
 
 gcastle
 pykeops
-# conda one requires pytorch<2
-pytorch-tabnet
-# deps on pytorch<2 and pandas<2
+# requires pytorch<2
+#pytorch-tabnet
 #pytorch-tabular
+pytorch-frame
 pytorch-widedeep
 sbi
-#tensorwatch
-#torchdiffeq
+torchdiffeq
 torchdrift
 torchensemble
 torcheval
-#torchsde
+torchsde

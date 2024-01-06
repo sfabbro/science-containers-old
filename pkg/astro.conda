@@ -22,7 +22,8 @@ esutil
 extinction
 feets
 fitsio
-fitstools
+# fights with tensorflow
+#fitstools
 fitsverify
 gala
 galpy
@@ -57,9 +58,10 @@ sncosmo
 speclite
 spectral-cube
 specutils
+spherematch
+spherical-geometry
 statmorph
 stsynphot
 synphot
 vaex-astro
-# moved to notebook
-#yt
+wcstools

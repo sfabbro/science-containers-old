@@ -1,5 +1,14 @@
 # conda packages requiring exclusively CUDA
 
+cuda-version=%CUDA_VERSION%*
 cudatoolkit=%CUDA_VERSION%*
+cupy
 nccl
 nvtop
+
+# still 11.2:
+#nvidia-apex
+#fairscale
+#faiss
+#pyg-lib
+#pytorch_scatter

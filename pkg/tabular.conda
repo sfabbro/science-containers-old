@@ -29,7 +29,6 @@ modal
 nltk
 openai
 optuna
-neuralforecast
 ngboost
 opentsne
 # overly strict python<3.9
@@ -39,14 +38,16 @@ bioconda::phate
 pmdarima
 pot
 prophet
+pykalman
 ray-tune
 salesforce-merlion
 salib
 scikit-learn
 scikit-learn-intelex
+scikit-lego
 scikit-multilearn
 scikit-optimize
-shap
+shap=*=*cpu*
 sklearn-contrib-lightning
 sklearn-pandas
 sktime
@@ -55,13 +56,16 @@ sktime
 spacy
 spacy-lookups-data
 statsforecast
+stumpy
 susi
 thinc
 bioconda::trimap
 tsdownsample
+tsfresh
 umap-learn
-u8darts-all
+u8darts
 vaex-ml
 visidata
 wandb
+window_ops
 xgboost=*=*cpu*

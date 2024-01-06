@@ -1,17 +1,17 @@
 # minimal set of conda packages
 
-conda-lock
 conda-libmamba-solver
+cxx-compiler
 libblas=*=*mkl*
 libcblas=*=*mkl*
 liblapack=*=*mkl*
 liblapacke=*=*mkl*
 numexpr=*=*mkl*
-numpy<1.25
+numpy
 openblas
 pip
-pip-tools
 pipenv
+pip-tools
 pixi
 poetry
 python=%PYTHON_VERSION%.*

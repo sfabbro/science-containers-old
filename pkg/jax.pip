@@ -1,4 +1,18 @@
 # ML and numerics jax based conda packages
 
-#dm-pix
+cr-sparse
+dm_pix
+gpax
+lineax
+#objax
+#optimistix
+#oryx
 rax
+#scenic
+
+#pkgs deps on tensorflow
+#aws-fortuna
+#liesel
+#rlax
+#trax
+#somap

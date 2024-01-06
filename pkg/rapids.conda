@@ -1,2 +1,2 @@
-cudatoolkit=11.8
-rapids=23.08*
+rapids=23.12*
+cuda-version=%CUDA_VERSION%*

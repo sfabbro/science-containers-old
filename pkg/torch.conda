@@ -5,29 +5,32 @@ accelerate
 baal
 botorch
 captum
-#deepspeed
+deepspeed
 diffusers
-# requires torch<2
+# deps are too restrictive
 #fairscale=*=*cpu*
 faiss=*=*cpu*
-fastchan::fastai
+fastai
 gpytorch
 hydra-core
 kornia
 lovely-tensors
-nvidia-apex=*=*cpu*
 mmcv=*=*cpu*
 mmdet
 mmsegmentation
+neuralforecast
 openmim
 pgmpy
 pymde
+pyg-lib=*=*cpu*
 pyro-ppl
 pytorch=*=*cpu*
 pytorch_geometric
 pytorch-lightning
 pytorch-metric-learning
+pytorch_cluster
 pytorch_scatter=*=*cpu*
+pytorch_sparse
 rdflib
 skorch
 tensorboard
@@ -40,3 +43,4 @@ torchtnt
 torchview
 torchvision=*=*cpu*
 transformers
+u8darts-all

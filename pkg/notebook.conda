@@ -5,6 +5,7 @@ black
 bqplot
 bqplot-image-gl
 dvclive
+
 fastai::execnb
 fastai::nbdev
 fastai::nbdev-numpy
@@ -13,7 +14,8 @@ fastai::nbdev-pytorch
 fastai::nbdev-scipy
 fastai::nbdev-stdlib
 fastai::nbprocess
-genai
+#genai
+
 ipyaladin
 ipyevents
 ipygany
@@ -25,15 +27,51 @@ ipytree
 ipywebrtc
 ipywidgets
 isort
+jupyter-ai
 jupyter-archive
 jupyter-resource-usage
-jupyter_server>2
+jupyter_server
 jupyter-server-proxy
-jupyterlab<4
+jupyterlab
 jupyterlab_code_formatter
 jupyterlab-favorites
 jupyterlab-git
 jupyterlab-h5web
+jupyterlab-variableinspector
+
+# only in jlab>4
+jupyterlab-myst
+jupyterlab-unfold
+perspective-parquet
+#jupyterlab_rise
+#glue-jupyterlab
+
+jupytext
+nbqa
+notebook
+nodejs
+papermill
+pyvista
+# a bit too many deps
+#sktime-all-extras
+#trame
+voila
+websockets
+yt
+
+# useless?
+#nb_conda_kernels
+#xeus-python
+#vaex-jupyter
+#glue-wwt # very old
+#pywwt
+#wwt_jupyterlab_extension
+
+# not ready for jlab>4
+#ipyvolume
+#ipyvuetify
+#jupyterlab-deck
+#jupyterlab-link-share
 
 # still a bit buggy
 #jupyterlab-lsp
@@ -41,35 +79,3 @@ jupyterlab-h5web
 #jupyterlab-system-monitor
 #python-lsp-server
 #mamba_gator
-
-# only in jlab>4
-#jupyterlab-myst
-#jupyterlab-unfold
-#perspective-parquet
-#jupyterlab-deck
-#glue-jupyterlab
-
-jupyterlab_vim
-jupytext
-#nb_conda_kernels
-nbqa
-notebook
-nodejs
-papermill
-pyvista
-sktime-all-extras
-#trame
-voila
-websockets
-# useless?
-#xeus-python
-yt
-
-# not ready for jlab>4
-ipyvolume
-ipyvuetify
-jupyterlab-link-share
-jupyterlab-variableinspector
-#pywwt
-vaex-jupyter
-#wwt_jupyterlab_extension

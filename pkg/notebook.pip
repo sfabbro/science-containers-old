@@ -4,6 +4,7 @@
 #jupyterlab_hdf
 #jupyterlab_sublime
 
-jdaviz
+#jdaviz
+
 jupyterlab-quarto
-jupyterlab_rise
+tensorwatch

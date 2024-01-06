@@ -3,12 +3,20 @@
 blackjax
 chex
 dm-haiku
+dm-tree
 equinox
 flax
 jax
 jaxlib=*=*cpu*
 jaxopt
 jaxtyping
+jraph
+keras
 numpyro
 optax
+ott-jax
 pzflow
+tinygp
+
+# needs tensorflow-probability
+#distrax

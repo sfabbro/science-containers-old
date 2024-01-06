@@ -8,7 +8,7 @@ corner
 dash-table
 datashader
 # deps conflicts flask,werkzeug
-#dtale 
+dtale 
 hist
 holoviews
 hvplot

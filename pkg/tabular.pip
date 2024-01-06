@@ -7,6 +7,10 @@
 
 gpboost
 iterative-stratification
+# conda-forge is not updating
 miceforest
 poniard
+quicksom
+sklearn-som
+somoclu
 tsfel
