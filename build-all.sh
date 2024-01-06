@@ -2,27 +2,46 @@
 
 source build.sh
 
-build_container base
+BASE_CONTAINERS=(
+    base
+    astroml
+    base-gpu
+    astroml-gpu
+)
 
-build_container astroml base
-build_container astroml-notebook astroml
-build_container astroml-vscode astroml
-build_container astroml-desktop astroml
+CONTAINERS=(
+    astroml-notebook
+    base-terminal
+    astroflow
+    astroml-vscode
+    astroflow-vscode
+    astroflow-notebook
+    astroml-gpu-notebook
+    astroml-gpu-vscode
+    astroflow-gpu
+    astroflow-gpu-notebook
+    astroflow-gpu-vscode
+    automl
+    automl-notebook
+    automl-gpu
+    automl-gpu-notebook
+    pycaret-notebook
+    pycaret-gpu-notebook
+    astrapids-gpu
+    astrapids-gpu-notebook
+    astrapids-gpu-vscode
+)
 
-build_container base-gpu
+for c in "${BASE_CONTAINERS[@]}"; do
+    echo
+    echo " >---- BUILDING ${c} ------<"
+    echo
+    build_container ${c}
+done
 
-build_container astroml-gpu base-gpu
-build_container astroml-gpu-notebook astroml-gpu
-build_container astroml-gpu-desktop astroml-gpu
-
-build_container automl base
-build_container automl-notebook automl
-build_container automl-gpu base-gpu
-build_container automl-gpu-notebook automl-gpu
-
-#build_container astrapids-gpu base
-#build_container astrapids-gpu base-gpu
-#build_container astrapids-gpu-notebook astrapids-gpu
-#build_container astrapids-gpu-vscode astrapids-gpu
-
-
+for c in "${CONTAINERS[@]}"; do
+    echo
+    echo " >---- BUILDING ${c} ------<"
+    echo
+    build_container ${c}
+done
