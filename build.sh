@@ -18,7 +18,7 @@ make_dockerfile() {
     local name=$1
     local stack=${name}
     stack=${stack%-notebook}
-    stack=${stack%-desktop}
+    stack=${stack%-terminal}
     stack=${stack%-vscode}
     stack=${stack%-gpu}
 
@@ -50,11 +50,11 @@ make_dockerfile() {
 	    [[ -e ${SRC_DIR}/pkg/notebook.${l} ]] && \
 		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.${l} >> ${l}.list
 	done
-	cat ${SRC_DIR}/dockerfiles/Dockerfile.notebook >> Dockerfile.stack
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.notebook >> Dockerfile.interface
     elif [[ ${name} =~ vscode ]]; then
-	cat ${SRC_DIR}/dockerfiles/Dockerfile.vscode >> Dockerfile.stack
-    elif  [[ ${name} =~ desktop ]]; then
-	cat ${SRC_DIR}/dockerfiles/Dockerfile.desktop >> Dockerfile.stack
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.vscode >> Dockerfile.interface
+    elif  [[ ${name} =~ terminal ]]; then
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.desktop >> Dockerfile.interface
     else
 	echo "Unknown sesssion requested: ${name}" >&2
     fi
@@ -81,20 +81,25 @@ make_dockerfile() {
     fi
 
     # add the list of pip packages
-    if [[ -e pip.list ]] && [[ $(wc -l pip.list | awk '{print $1}') -gt 0 ]]; then
-	echo "  - pip:" >> env.yml
-	cat pip.list \
-	    | sort | uniq | awk 'NF' \
-	    | sed -e 's|\(.*\)|     - \1|g' \
-		  >> env.yml
-    fi
+#    if [[ -e pip.list ]] && [[ $(wc -l pip.list | awk '{print $1}') -gt 0 ]]; then
+#	echo "  - pip:" >> env.yml
+#	cat pip.list \
+#	    | sort | uniq | awk 'NF' \
+#	    | sed -e 's|\(.*\)|     - \1|g' \
+#		  >> env.yml
+#   fi
     sed -i \
 	-e "s|%PYTHON_VERSION%|${PYTHON_VERSION}|g" \
 	-e "s|%CUDA_VERSION%|${CUDA_VERSION}|g"  \
 	env.yml
 
     # create the pinned packages file from the env.yml file
-    awk '/=/{print $2}' env.yml |  sed 's|=| |g' > pinned
+    awk '/=/{print $2}' env.yml | awk -F'=' '{print $1" "$2" "$3}'  > pinned
+    awk '/</{print $2}' env.yml | awk -F'<' '{print $1" < "$2" "$3}' >> pinned
+    awk '/>/{print $2}' env.yml | awk -F'>' '{print $1" > "$2" "$3}' >> pinned
+
+    cat pip.list | sort | uniq > new.pip.list
+    mv new.pip.list pip.list
 
     # now compile a final Dockerfile
     echo "Dockerfile stack is ${stack}"
@@ -110,7 +115,9 @@ make_dockerfile() {
 	    cat ${SRC_DIR}/dockerfiles/Dockerfile.conda >> Dockerfile
     fi
     [[ -e Dockerfile.stack ]] && cat Dockerfile.stack >> Dockerfile
+    [[ -e Dockerfile.interface ]] && cat Dockerfile.interface >> Dockerfile
 
+    cat ${SRC_DIR}/dockerfiles/Dockerfile.tail >> Dockerfile
     cp ${SRC_DIR}/dockerfiles/files/* .
 }
 
@@ -118,7 +125,26 @@ build_container() {
     local name=$1
     local build_dir=${PWD}/_build/${name}
     local base_container=${BASE_CONTAINER}
-    [[ $# == 2 ]] && base_container=${OWNER}/$2:latest
+
+    local f
+    f=${name%-notebook}
+    f=${f%-vscode}
+    f=${f%-terminal}
+
+    if [[ ${name:0:4} != base ]]; then
+	if [[ ${name} != ${f} ]]; then
+	    if [[ $(docker images | grep "${OWNER}/${f} " | awk '{print$1}' | wc -l) != 1 ]]; then
+		base_container=${OWNER}/${f}:latest
+	    fi
+	else
+	    if [[ ${f%-gpu} == ${f} ]]; then
+		base_container=${OWNER}/base:latest
+	    else
+		base_container=${OWNER}/base-gpu:latest
+	    fi
+	fi
+    fi
+    echo "BUILDING ${name} from ${base_container}"
 
     rm -rf ${build_dir}
     mkdir -p ${build_dir}
