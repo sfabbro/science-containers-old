@@ -1,0 +1,7 @@
+# save build information files into container
+
+COPY Dockerfile .
+RUN mkdir -p /build-info \
+    && for f in env.yml apt.list Dockerfile; do \
+       [[ -e ${f} ]] && cp ${f} /build-info/ ; done \
+    && rm -rf /tmp/* ~/.cache/*

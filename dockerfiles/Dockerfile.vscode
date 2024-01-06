@@ -21,5 +21,6 @@ RUN curl -sL https://github.com/coder/code-server/raw/main/ci/release-image/entr
 
 EXPOSE 5000
 RUN mkdir /skaha
-COPY vscode_start.sh /usr/local/bin/vscode_start.sh
-ENTRYPOINT [ "/usr/local/bin/vscode_start.sh" ]
+COPY vscode_start.sh /skaha/startup.sh
+RUN chmod gou+x /skaha/startup.sh
+ENTRYPOINT [ "/skaha/startup.sh" ]

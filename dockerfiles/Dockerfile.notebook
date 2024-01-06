@@ -12,9 +12,9 @@ HEALTHCHECK --interval=5s --timeout=3s --start-period=5s --retries=3 \
 #RUN npm install --save-dev $(cat npm.list)
 
 # ensure we build jupyter extensions and cleanup
-RUN jupyter lab build \
-    && jupyter lab clean \
-    && npm cache clean --force
+#RUN jupyter lab build --debug \
+#    && jupyter lab clean \
+#    && npm cache clean --force
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 

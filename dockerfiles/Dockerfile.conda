@@ -9,6 +9,9 @@ RUN sed -i -e '/conda-forge/d' channels.list \
 COPY env.yml .
 RUN conda-env-update.sh env.yml
 
+COPY pip.list .
+RUN  pip install --no-cache-dir $(cat pip.list)
+
 COPY pinned .
 RUN touch ${CONDA_DIR}/conda-meta/pinned \
     && cat pinned ${CONDA_DIR}/conda-meta/pinned | sort | uniq > pinned.new \
@@ -16,6 +19,6 @@ RUN touch ${CONDA_DIR}/conda-meta/pinned \
 
 COPY Dockerfile .
 RUN mkdir -p /build-info \
-    && for f in env.yml apt.list Dockerfile; do \
+    && for f in env.yml pip.list apt.list Dockerfile; do \
        [[ -e ${f} ]] && cp ${f} /build-info/ ; done \
     && rm -rf /tmp/* ~/.cache/*
