@@ -1,10 +1,3 @@
-# 08/2023: deps too conflicting
-langchain
-paperqa
-jupyter_ai
-jupyter_ai_chatgpt
-jupyter_ai_dalle
-
 # slightly old, not super usefulmam
 scikit-na
 
@@ -14,8 +7,6 @@ proplot
 # 04/23: deps tensorflow-cpu and flax<0.7 (pip)
 aws-fortuna
 
-# 08/2023: deps sklearn==1.0 (conda,pip)
-causalml
 # 08/2023: deps sklearn==1.1 and pillow<10 (conda,pip)
 omnixai
 
