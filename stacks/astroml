@@ -1,8 +1,9 @@
 astro
-datascience
 jax
 misc
+numerics
 tabular
+timeseries
 topcat
 torch
 viz

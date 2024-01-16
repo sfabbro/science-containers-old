@@ -1,16 +1,18 @@
-# Tabular ML pip packages
+# dataframes and tabular pip packages
 
 # restrict to tabular for now (torch<2)
 # brings down pillow, scikit-image, shap
 #alibi[ray,shap]
 #alibi-detect[prophet]
 
+clevercsv[full]
+getdaft
 gpboost
 iterative-stratification
-# conda-forge is not updating
 miceforest
 poniard
 quicksom
 sklearn-som
 somoclu
 tsfel
+tsfeatures
