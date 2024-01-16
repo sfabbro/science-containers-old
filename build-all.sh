@@ -5,19 +5,20 @@ source build.sh
 BASE_CONTAINERS=(
     base
     astroml
+    astroml-notebook
     base-gpu
     astroml-gpu
+    astroml-gpu-notebook
 )
 
 CONTAINERS=(
-    astroml-notebook
+    ${BASE_CONTAINERS[@]}
     base-terminal
-    astroflow
     astroml-vscode
-    astroflow-vscode
-    astroflow-notebook
-    astroml-gpu-notebook
     astroml-gpu-vscode
+    astroflow
+    astroflow-notebook
+    astroflow-vscode
     astroflow-gpu
     astroflow-gpu-notebook
     astroflow-gpu-vscode
@@ -25,19 +26,10 @@ CONTAINERS=(
     automl-notebook
     automl-gpu
     automl-gpu-notebook
-    pycaret-notebook
-    pycaret-gpu-notebook
     astrapids-gpu
     astrapids-gpu-notebook
     astrapids-gpu-vscode
 )
-
-for c in "${BASE_CONTAINERS[@]}"; do
-    echo
-    echo " >---- BUILDING ${c} ------<"
-    echo
-    build_container ${c}
-done
 
 for c in "${CONTAINERS[@]}"; do
     echo
