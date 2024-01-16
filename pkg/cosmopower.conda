@@ -1,0 +1,15 @@
+scikit-learn
+cython
+tqdm
+gdown
+mkdocs-material
+mkdocstrings
+jaxlib=*=*cpu*
+jupyter
+jupyterlab
+matplotlib-base
+pyarrow=*=*cpu*
+pydoe
+pytest
+tensorflow=2.13.*=*cpu*
+tensorflow-probability<0.22
