@@ -1,2 +1,3 @@
 rapids=23.12*
-cuda-version=%CUDA_VERSION%*
+cuda-version=12.*
+

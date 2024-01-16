@@ -5,11 +5,11 @@ accelerate
 baal
 botorch
 captum
-deepspeed
+#deepspeed
 diffusers
 # deps are too restrictive
 #fairscale=*=*cpu*
-faiss=*=*cpu*
+#faiss=*=*cpu*
 fastai
 gpytorch
 hydra-core
