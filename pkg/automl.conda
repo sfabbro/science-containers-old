@@ -4,6 +4,5 @@ autogluon
 autoboost
 evalml
 flaml
-#pycaret
 pytorch-forecasting
 tpot

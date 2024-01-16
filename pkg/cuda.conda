@@ -6,9 +6,10 @@ cupy
 nccl
 nvtop
 
+# still 11.8:
+#jaxlib
+
 # still 11.2:
 #nvidia-apex
 #fairscale
 #faiss
-#pyg-lib
-#pytorch_scatter

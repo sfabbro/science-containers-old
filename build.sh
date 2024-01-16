@@ -35,7 +35,10 @@ make_dockerfile() {
 
     # gpu: change conda package builds from cpu for their cuda versions
     if [[ ${name} =~ gpu ]]; then
-	sed -i -e "s|cpu|cu|g" conda.list
+	sed -e "/arrow/ ! s/*cpu*/*cuda${CUDA_VERSION/./}/g" \
+	    -e "/arrow/ s/*cpu*/*cuda/g" \
+	    -i conda.list
+
 	for l in apt conda pip channels; do
 	    [[ -e ${SRC_DIR}/pkg/cuda.${l} ]] && \
 		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/cuda.${l} >> ${l}.list
@@ -46,15 +49,29 @@ make_dockerfile() {
     # session interfaces
     # notebook: add specific notebook, lab and extensions packages
     if [[ ${name} =~ notebook ]]; then
-	for l in conda pip npm; do
+	for l in apt conda pip npm; do
 	    [[ -e ${SRC_DIR}/pkg/notebook.${l} ]] && \
 		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.${l} >> ${l}.list
+	    [[ -e ${SRC_DIR}/pkg/dev.${l} ]] && \
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/dev.${l} >> ${l}.list
 	done
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.notebook >> Dockerfile.interface
     elif [[ ${name} =~ vscode ]]; then
+	for l in apt conda pip npm; do
+	    [[ -e ${SRC_DIR}/pkg/vscode.${l} ]] && \
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/vscode.${l} >> ${l}.list
+	    [[ -e ${SRC_DIR}/pkg/dev.${l} ]] && \
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/dev.${l} >> ${l}.list
+	done
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.vscode >> Dockerfile.interface
     elif  [[ ${name} =~ terminal ]]; then
-	cat ${SRC_DIR}/dockerfiles/Dockerfile.desktop >> Dockerfile.interface
+	for l in apt conda pip npm; do
+	    [[ -e ${SRC_DIR}/pkg/terminal.${l} ]] && \
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/terminal.${l} >> ${l}.list && \
+	    [[ -e ${SRC_DIR}/pkg/dev.${l} ]] && \
+		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/dev.${l} >> ${l}.list
+	done
+	cat ${SRC_DIR}/dockerfiles/Dockerfile.terminal >> Dockerfile.interface
     else
 	echo "Unknown sesssion requested: ${name}" >&2
     fi
@@ -87,7 +104,13 @@ make_dockerfile() {
 #	    | sort | uniq | awk 'NF' \
 #	    | sed -e 's|\(.*\)|     - \1|g' \
 #		  >> env.yml
-#   fi
+    #   fi
+
+    if [[ -e pip.list ]] && [[ $(wc -l pip.list | awk '{print $1}') -gt 0 ]]; then
+	cat pip.list | sort | uniq > new.pip.list
+	mv new.pip.list pip.list
+    fi
+
     sed -i \
 	-e "s|%PYTHON_VERSION%|${PYTHON_VERSION}|g" \
 	-e "s|%CUDA_VERSION%|${CUDA_VERSION}|g"  \
@@ -97,9 +120,6 @@ make_dockerfile() {
     awk '/=/{print $2}' env.yml | awk -F'=' '{print $1" "$2" "$3}'  > pinned
     awk '/</{print $2}' env.yml | awk -F'<' '{print $1" < "$2" "$3}' >> pinned
     awk '/>/{print $2}' env.yml | awk -F'>' '{print $1" > "$2" "$3}' >> pinned
-
-    cat pip.list | sort | uniq > new.pip.list
-    mv new.pip.list pip.list
 
     # now compile a final Dockerfile
     echo "Dockerfile stack is ${stack}"
@@ -132,10 +152,8 @@ build_container() {
     f=${f%-terminal}
 
     if [[ ${name:0:4} != base ]]; then
-	if [[ ${name} != ${f} ]]; then
-	    if [[ $(docker images | grep "${OWNER}/${f} " | awk '{print$1}' | wc -l) != 1 ]]; then
-		base_container=${OWNER}/${f}:latest
-	    fi
+	if [[ ${name} != ${f} ]] && [[ $(docker images | grep "${OWNER}/${f} " | awk '{print$1}' | wc -l) == 1 ]]; then
+	    base_container=${OWNER}/${f}:latest
 	else
 	    if [[ ${f%-gpu} == ${f} ]]; then
 		base_container=${OWNER}/base:latest
@@ -155,6 +173,7 @@ build_container() {
     docker build \
 	   --rm --force-rm \
 	   --build-arg BASE_CONTAINER=${base_container} \
+	   --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
 	   --tag ${OWNER}/${name}:latest \
 	   . 2>&1 | tee build.log 2>&1
     popd

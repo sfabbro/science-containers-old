@@ -16,6 +16,7 @@ distro
 dvc
 fqdn
 freetype-py
+gdown
 gh
 gspread
 html2text
@@ -44,6 +45,7 @@ quarto
 requests
 requests-toolbelt
 sqlalchemy
+sqlite
 sphinx
 termcolor
 terminaltables

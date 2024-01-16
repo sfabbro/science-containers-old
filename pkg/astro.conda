@@ -13,6 +13,7 @@ astromatic-swarp
 astroml
 astroplan
 astroquery
+camb
 ccdproc
 cosmosis
 dust_extinction
@@ -22,7 +23,6 @@ esutil
 extinction
 feets
 fitsio
-# fights with tensorflow
 #fitstools
 fitsverify
 gala
@@ -44,11 +44,13 @@ nautilus-sampler
 numcosmo
 pgplot
 photutils
+poppy
 pyccl
 pydl
 pyregion
 pysynphot
 pyvo
+pyxel-sim
 regions
 reproject
 sep

@@ -11,7 +11,7 @@ jaxlib=*=*cpu*
 jaxopt
 jaxtyping
 jraph
-keras
+keras>3
 numpyro
 optax
 ott-jax
