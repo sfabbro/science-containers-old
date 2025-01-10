@@ -1,0 +1,8 @@
+WORKDIR /tmp
+
+USER root
+RUN wget https://github.com/manojkarthick/pqrs/releases/download/v0.3.2/pqrs-0.3.2-x86_64-unknown-linux-gnu.zip \
+    && unzip pqrs-0.3.2-x86_64-unknown-linux-gnu.zip \
+    && install -m 755 pqrs-0.3.2-x86_64-unknown-linux-gnu/bin/pqrs /usr/local/bin \
+    && rm -rf pqrs*
+

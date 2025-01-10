@@ -1,0 +1,12 @@
+
+RUN apt-get update --yes && apt-get install --yes libcfitsio-dev wcslib-dev
+WORKDIR /tmp
+ADD casutools-1.0.41.tar.gz ./
+WORKDIR /tmp/casutools-1.0.41
+RUN ./configure --prefix=/usr/local && make && make install && make clean
+WORKDIR /tmp
+RUN rm -rf casutools* && \
+    apt-get clean --yes && \
+    apt-get autoremove --purge --yes && \
+    rm -rf /var/lib/apt/lists/* /var/tmp/*
+    

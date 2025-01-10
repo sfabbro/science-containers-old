@@ -1,2 +1,12 @@
-RUN add-apt-repository ppa:cartavis-team/carta
-RUN apt-install.sh fits2idia
+#RUN add-apt-repository ppa:cartavis-team/carta
+#RUN apt-install.sh fits2idia
+
+WORKDIR /tmp
+RUN wget https://github.com/CARTAvis/fits2idia/archive/refs/tags/v0.1.15.tar.gz \
+    && tar xf v0.1.15.tar.gz \
+    && cd fits2idia-0.1.15 \
+    && mkdir build && cd build && cmake .. \
+    && make -j2 && make install \
+    && cd /tmp && rm -rf v0.1.15.tar.gz fits2idia-0.1.15
+
+

@@ -1,0 +1,17 @@
+
+WORKDIR /tmp
+USER root
+
+# install old dependencies
+RUN apt install -y apt-transport-https \
+    && sh -c 'echo "deb [arch=amd64] http://deb.debian.org/debian stable main" > /etc/apt/sources.list.d/debian-libncurses5.list' \
+    && wget -qO- https://ftp-master.debian.org/keys/archive-key-11.asc | apt-key add - \
+    && apt update -y \
+    && apt install libncurses5 -y \
+    && rm /etc/apt/sources.list.d/debian-libncurses5.list
+
+RUN wget https://users.obs.carnegiescience.edu/peng/work/galfit/galfit3-debian64.tar.gz \
+    && tar -xzf galfit3-debian64.tar.gz \
+    && rm galfit3-debian64.tar.gz \
+    && mv galfit /usr/local/bin \
+    && chmod 755 /usr/local/bin/galfit

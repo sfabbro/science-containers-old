@@ -1,0 +1,10 @@
+WORKDIR /opt
+
+ENV IMFIT_VERSION=1.9.0
+
+# Install Imfit
+RUN wget https://www.mpe.mpg.de/~erwin/resources/imfit/binaries/imfit-${IMFIT_VERSION}-linux-64.tar.gz \
+    && tar xzf imfit-${IMFIT_VERSION}-linux-64.tar.gz \
+    && rm imfit-${IMFIT_VERSION}-linux-64.tar.gz \
+    && ln -s imfit-${IMFIT_VERSION} imfit \
+    && for f in imfit imfit-mcmc makeimage ; do ln -s /opt/imfit/${f} /usr/local/bin; done

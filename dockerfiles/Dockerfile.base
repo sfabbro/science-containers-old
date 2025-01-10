@@ -9,7 +9,7 @@ RUN apt-install.sh apt.list
 ADD nsswitch.conf /etc/
 
 # install micromamba and initialize
-ARG PYTHON_VERSION=3.10
+ARG PYTHON_VERSION=3.12
 
 ENV CONDA_DIR=/opt/conda
 ENV PATH="${CONDA_DIR}/bin:${PATH}"
@@ -17,26 +17,30 @@ ENV PATH="${CONDA_DIR}/bin:${PATH}"
 COPY condarc "${CONDA_DIR}/.condarc"
 
 RUN set -x \
-    && curl -Ls https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
+    && curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xj bin/micromamba \
     && ./bin/micromamba install \
         --root-prefix="${CONDA_DIR}" \
         --prefix="${CONDA_DIR}" \
         --yes \
-        python=${PYTHON_VERSION} mamba
+        python=${PYTHON_VERSION} mamba conda
 
-# conda profile scripts by default
-RUN ln -s ${CONDA_DIR}/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+# mamba profile scripts by default
+#RUN ln -s ${CONDA_DIR}/etc/profile.d/mamba.sh /etc/profile.d/mamba.sh
+#RUN ln -s mamba ${CONDA_DIR}/bin/conda 
 
 COPY channels.list .
 RUN sed -i -e '/conda-forge/d' channels.list \
     && [ $(wc -l channels.list | awk '{print $1}') != 0 ] \
     && cat channels.list | uniq | awk 'NF' \
-       | xargs -n1 conda config --system --prepend channels \
+       | xargs -n1 mamba config prepend --system channels \
     || echo "no new channels to add"
 
 # install minimimal base conda environment
 COPY env.yml .
 RUN conda-env-update.sh env.yml
+
+COPY pip.list .
+RUN  pip install --no-cache-dir $(cat pip.list)
 
 COPY pinned .
 RUN touch ${CONDA_DIR}/conda-meta/pinned \

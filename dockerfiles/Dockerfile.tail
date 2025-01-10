@@ -1,7 +1,6 @@
 # save build information files into container
 
-COPY Dockerfile .
-RUN mkdir -p /build-info \
-    && for f in env.yml apt.list Dockerfile; do \
-       [[ -e ${f} ]] && cp ${f} /build-info/ ; done \
-    && rm -rf /tmp/* ~/.cache/*
+WORKDIR /build_info
+COPY Dockerfile env.yml pip.list apt.list apt-install.sh conda-env-update.sh .
+RUN rm -rf /tmp/* ~/.cache/*
+WORKDIR /tmp
