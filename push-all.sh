@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-source build-all.sh
+source containers.sh
 
 for c in "${CONTAINERS[@]}"; do
     echo

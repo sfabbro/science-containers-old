@@ -1,12 +1,14 @@
+
 #!/bin/bash -eux
 
 REGISTRY="images.canfar.net"
 OWNER="skaha"
 TAG="$(date +%y.%m)"
 
-: ${PYTHON_VERSION=3.10}
-: ${CUDA_VERSION=11.2}
-: ${BASE_CONTAINER=ubuntu:22.04}
+: ${PYTHON_VERSION=3.11}
+: ${CUDA_VERSION=12}
+: ${BASE_CONTAINER=ubuntu:24.04}
+#: ${BASE_CONTAINER=debian:sid}
 
 SRC_DIR=${PWD}
 
@@ -20,28 +22,32 @@ make_dockerfile() {
     stack=${stack%-notebook}
     stack=${stack%-terminal}
     stack=${stack%-vscode}
-    stack=${stack%-gpu}
+    stack=${stack%-cuda}
 
     for p in $(cat ${SRC_DIR}/stacks/${stack}); do
 	# construct a list of packages for conda/pip
 	for l in apt conda pip channels; do
 	    [[ -e ${SRC_DIR}/pkg/${p}.${l} ]] && \
-		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/${p}.${l} >> ${l}.list
+		grep -ve '^\s*#' -e '^$' ${SRC_DIR}/pkg/${p}.${l} >> ${l}.list
 	done
 	# add stack specific dockerfile
 	[[ -e ${SRC_DIR}/dockerfiles/Dockerfile.${p} ]] &&  \
 	    cat ${SRC_DIR}/dockerfiles/Dockerfile.${p} >> Dockerfile.stack
     done
 
-    # gpu: change conda package builds from cpu for their cuda versions
-    if [[ ${name} =~ gpu ]]; then
+    # cuda: change conda package builds from cpu for their cuda versions
+    if [[ ${name} =~ cuda ]]; then
 	sed -e "/arrow/ ! s/*cpu*/*cuda${CUDA_VERSION/./}/g" \
 	    -e "/arrow/ s/*cpu*/*cuda/g" \
+	    -e "/arrow/ s/*cuda${CUDA_VERSION}*/*cuda/g" \
+	    -e "/lightgbm/ ! s/*cpu*/*cuda${CUDA_VERSION/./}/g" \
+	    -e "/lightgbm/ s/*cpu*/*cuda/g" \
+	    -e "/lightgbm/ s/*cuda${CUDA_VERSION/./}*/*cuda/g" \
 	    -i conda.list
 
 	for l in apt conda pip channels; do
 	    [[ -e ${SRC_DIR}/pkg/cuda.${l} ]] && \
-		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/cuda.${l} >> ${l}.list
+		grep -ve '^\s*#' -e '^$' ${SRC_DIR}/pkg/cuda.${l} >> ${l}.list
 	done
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.cuda >> Dockerfile.stack
     fi
@@ -51,9 +57,9 @@ make_dockerfile() {
     if [[ ${name} =~ notebook ]]; then
 	for l in apt conda pip npm; do
 	    [[ -e ${SRC_DIR}/pkg/notebook.${l} ]] && \
-		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.${l} >> ${l}.list
+		grep -ve '^\s*#' -e '^$' ${SRC_DIR}/pkg/notebook.${l} >> ${l}.list
 	    [[ -e ${SRC_DIR}/pkg/dev.${l} ]] && \
-		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/dev.${l} >> ${l}.list
+		grep -ve '^\s*#' -e '^$' ${SRC_DIR}/pkg/dev.${l} >> ${l}.list
 	done
 	cat ${SRC_DIR}/dockerfiles/Dockerfile.notebook >> Dockerfile.interface
     elif [[ ${name} =~ vscode ]]; then
@@ -67,11 +73,11 @@ make_dockerfile() {
     elif  [[ ${name} =~ terminal ]]; then
 	for l in apt conda pip npm; do
 	    [[ -e ${SRC_DIR}/pkg/terminal.${l} ]] && \
-		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/terminal.${l} >> ${l}.list && \
+		grep -ve '^\s*#' -e '^$' ${SRC_DIR}/pkg/terminal.${l} >> ${l}.list && \
 	    [[ -e ${SRC_DIR}/pkg/dev.${l} ]] && \
-		grep -ve '\s*#' -e '^$' ${SRC_DIR}/pkg/dev.${l} >> ${l}.list
+		grep -ve '^\s*#' -e '^$' ${SRC_DIR}/pkg/dev.${l} >> ${l}.list
 	done
-	cat ${SRC_DIR}/dockerfiles/Dockerfile.terminal >> Dockerfile.interface
+	#cat ${SRC_DIR}/dockerfiles/Dockerfile.terminal >> Dockerfile.interface
     else
 	echo "Unknown sesssion requested: ${name}" >&2
     fi
@@ -111,10 +117,9 @@ make_dockerfile() {
 	mv new.pip.list pip.list
     fi
 
-    sed -i \
-	-e "s|%PYTHON_VERSION%|${PYTHON_VERSION}|g" \
+    sed -e "s|%PYTHON_VERSION%|${PYTHON_VERSION}|g" \
 	-e "s|%CUDA_VERSION%|${CUDA_VERSION}|g"  \
-	env.yml
+	-i env.yml
 
     # create the pinned packages file from the env.yml file
     awk '/=/{print $2}' env.yml | awk -F'=' '{print $1" "$2" "$3}'  > pinned
@@ -155,10 +160,10 @@ build_container() {
 	if [[ ${name} != ${f} ]] && [[ $(docker images | grep "${OWNER}/${f} " | awk '{print$1}' | wc -l) == 1 ]]; then
 	    base_container=${OWNER}/${f}:latest
 	else
-	    if [[ ${f%-gpu} == ${f} ]]; then
+	    if [[ ${f%-cuda} == ${f} ]]; then
 		base_container=${OWNER}/base:latest
 	    else
-		base_container=${OWNER}/base-gpu:latest
+		base_container=${OWNER}/base-cuda:latest
 	    fi
 	fi
     fi

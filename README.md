@@ -25,7 +25,7 @@ astroml-desktop  (desktop-app)
 - The `astroml-*` add visualisation and interactivity software. They can be launched as a `notebook` session, a `contributed` VSCode session, or a terminal through a `desktop` session.
 - The `Desktop Application` containers do not typically derive from `astroml` and sometimes not from `base` containers, as they are legacy and may rely on now unsupported OS.
 
-There are CUDA-enabled versions of the containers, which include NVIDIA software and CUDA-powered libraries. They are built and named as `*-gpu`, i.e. `astroml-gpu`, `astroml-gpu-notebook`.
+There are CUDA-enabled versions of the containers, which include NVIDIA software and CUDA-powered libraries. They are built and named as `*-cuda`, i.e. `astroml-cuda`, `astroml-cuda-notebook`.
 
 ## CANFAR User Customised Container
 If you want to build your own containers, documentation can be found in the [docs directory](docs).
