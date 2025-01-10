@@ -7,12 +7,13 @@ cmasher
 corner
 dash-table
 datashader
-# deps conflicts flask,werkzeug
-dtale 
+datamatplot
+dtale
 hist
 holoviews
 hvplot
 mpl-scatter-density
+mpl3d
 palettable
 plotly
 plotnine

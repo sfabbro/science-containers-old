@@ -2,6 +2,7 @@
 
 aenum
 args
+bitarray
 boltons
 chardet
 cchardet
@@ -16,9 +17,12 @@ distro
 dvc
 fqdn
 freetype-py
+fuzzywuzzy
 gdown
 gh
 gspread
+globus-cli
+globus-sdk
 html2text
 humanfriendly
 importlib_metadata
@@ -30,6 +34,7 @@ mamba-bash-completion
 nmslib
 oauth2client
 packaging
+portalocker
 parameterized
 protobuf
 psutil
@@ -44,6 +49,7 @@ pyzotero
 quarto
 requests
 requests-toolbelt
+#scalene
 sqlalchemy
 sqlite
 sphinx

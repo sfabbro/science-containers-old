@@ -1,6 +1,17 @@
 # minimal set of conda packages
 
-conda-libmamba-solver
+conda
 pip
 pip-tools
-python=%PYTHON_VERSION%.*
+pixi
+uv
+
+
+# numerics stuff
+
+libblas=*=*mkl*
+libcblas=*=*mkl*
+liblapack=*=*mkl*
+liblapacke=*=*mkl*
+libopenblas
+numexpr=*=*mkl*

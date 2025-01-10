@@ -1,21 +1,22 @@
+
 # time series conda packages
 
-hierarchicalforecast
 mlforecast
 neuralforecast
 orbit-ml
-pyod
 pmdarima
 prophet
+pyod
+ruptures
 salesforce-merlion
 sktime
-# needs more notebook
-#sktime-all-extras
+sktime-all-extras
 statsforecast
 statsmodels
 stumpy
 tbats
 tsdownsample
+tsflex
 tsfresh
 u8darts
 window_ops

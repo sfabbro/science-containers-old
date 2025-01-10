@@ -6,13 +6,16 @@
 #alibi-detect[prophet]
 
 clevercsv[full]
-getdaft
 gpboost
+fireducks
 iterative-stratification
+# because conda version is too old
 miceforest
-poniard
 quicksom
 sklearn-som
-somoclu
-tsfel
-tsfeatures
+powershap
+crepes-weigthted
+ppi_py
+xgboost-distribution
+sqlutilpy
+polars-ols

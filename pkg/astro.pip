@@ -3,11 +3,7 @@
 adamet
 astroimtools
 astropandas
-cadcdata
-cadctap
-cadcutils
 ceci
-cobaya
 doppler
 lacosmic
 light-curve
@@ -15,6 +11,5 @@ loess
 ltsfit
 nway
 ppxf
-skaha
 tweakwcs
-vos
+

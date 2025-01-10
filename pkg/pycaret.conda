@@ -1,3 +1,111 @@
-# Auto ML conda packages and dependencies for pip ones not in misc
+# Auto ML conda packages and dependencies for pip ones not in pycaret
 
-pycaret>3
+ipython
+ipywidgets
+tqdm
+numpy<1.27
+pandas>2.2
+jinja2
+scipy<1.12
+joblib<1.4
+scikit-learn>1.4.0
+pyod
+imbalanced-learn
+category_encoders
+lightgbm=*=*cpu*
+numba>0.55.0
+requests
+psutil
+markupsafe
+importlib_metadata
+nbformat
+cloudpickle
+deprecation
+python-xxhash
+wurlitzer
+trio<0.25
+matplotlib-base<3.8.0
+mljar-scikit-plot
+yellowbrick
+plotly-resampler>0.8.3
+python-kaleido
+schemdraw=0.15
+plotly-resampler
+statsmodels
+sktime
+tbats
+pmdarima
+
+# Analysis
+shap=0.44*=*cpu*
+umap-learn
+interpret
+pyyaml
+ydata-profiling=4.10*
+#explainerdashboard
+fairlearn=0.7.0
+
+# Models
+py-xgboost-cpu
+catboost
+kmodes
+mlxtend
+statsforecast<1.8.0
+scikit-learn-intelex
+
+# Tuners
+tune-sklearn
+ray-tune
+hyperopt
+optuna
+optuna-integration
+scikit-optimize
+
+# MLOps
+mlflow
+gradio
+boto3
+fastapi
+uvicorn
+m2cgen
+evidently<0.4.30
+wandb
+
+# Parallel
+dask>2024.4
+distributed
+fugue=0.8.*
+flask
+Werkzeug<3.0
+
+# Astro
+fitsio
+astropy
+astroquery
+fastavro
+fastparquet
+python-duckdb
+dirty_cat
+zarr
+mapie
+crepes
+h5py
+feets
+jupyterlab
+jupyter-dash
+
+# Numerics
+libblas=*=*mkl*
+libcblas=*=*mkl*
+liblapack=*=*mkl*
+liblapacke=*=*mkl*
+numexpr=*=*mkl*
+
+dash-bootstrap-components
+dtreeviz
+wordcloud=1.9*
+dash-auth
+flask-wtf
+oyaml
+waitress
+wtforms

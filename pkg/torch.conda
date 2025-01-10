@@ -2,42 +2,47 @@
 
 albumentations
 accelerate
-baal
+avalanche
+#baal # too old (1.7.0) => pip
 botorch
 captum
-#deepspeed
+deepspeed=*=*cpu*
 diffusers
-# deps are too restrictive
+# cuda version is stiil <12
 #fairscale=*=*cpu*
-#faiss=*=*cpu*
+faiss=*=*cpu*
 fastai
 gpytorch
 hydra-core
 kornia
+# overly restrictive deps
+#lightning-uq-box
 lovely-tensors
-mmcv=*=*cpu*
-mmdet
-mmsegmentation
+nessai
 neuralforecast
-openmim
 pgmpy
 pymde
-pyg-lib=*=*cpu*
 pyro-ppl
 pytorch=*=*cpu*
 pytorch_geometric
 pytorch-lightning
 pytorch-metric-learning
+pyg-lib=*=*cpu*
 pytorch_cluster
 pytorch_scatter=*=*cpu*
 pytorch_sparse
+pytorch-tabular
 rdflib
+sbi
+schedulefree
 skorch
 tensorboard
 tensorboardx
 timm
+torchaudio=*=*cpu*
 torchinfo
 torchmetrics
+torchopt
 torchquad
 torchtnt
 torchview

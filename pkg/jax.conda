@@ -2,21 +2,27 @@
 
 blackjax
 chex
+diffrax
+distrax
 dm-haiku
 dm-tree
 equinox
 flax
+interpax
 jax
 jaxlib=*=*cpu*
 jaxopt
+jax-tqdm
 jaxtyping
+jmp
 jraph
-keras>3
+keras
+levanter
+lineax
 numpyro
+optimistix
+orbax
 optax
 ott-jax
 pzflow
 tinygp
-
-# needs tensorflow-probability
-#distrax

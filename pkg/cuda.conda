@@ -1,15 +1,11 @@
 # conda packages requiring exclusively CUDA
 
 cuda-version=%CUDA_VERSION%*
-cudatoolkit=%CUDA_VERSION%*
+cuda-nvcc
 cupy
-nccl
 nvtop
+pycuda
 
-# still 11.8:
-#jaxlib
-
-# still 11.2:
-#nvidia-apex
-#fairscale
-#faiss
+#cudatoolkit=%CUDA_VERSION%*
+#nccl
+#nvidia::cuda-nvcc

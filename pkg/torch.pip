@@ -1,15 +1,24 @@
 # pytorch-based ML pip packages
 
-gcastle
+baal
+dadaptation
+neuralprocesses
+prodigyopt
+ptwt
 pykeops
-# requires pytorch<2
-#pytorch-tabnet
-#pytorch-tabular
 pytorch-frame
-pytorch-widedeep
-sbi
-torchdiffeq
-torchdrift
-torchensemble
-torcheval
-torchsde
+pytorch-model-summary
+torchcp
+torchdr
+torchfix
+umap_pytorch
+
+
+#gcastle
+#pytorch-tabnet
+#pytorch-widedeep
+#torchdiffeq
+#torchdrift
+#torchensemble
+#torcheval
+#torchsde

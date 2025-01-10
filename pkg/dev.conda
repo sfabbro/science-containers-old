@@ -1,9 +1,19 @@
+# tools to develop under conda
+
 clint
 cookiecutter
 cxx-compiler
+fortran-compiler
 deprecation
 freetype-py
+autoconf
+libtool
+cmake
+meson
+compilers
 gh
 pipenv
 pixi
+pkg-config
 poetry
+uv

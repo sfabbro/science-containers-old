@@ -1,0 +1,11 @@
+astropy
+astroquery
+cython
+dask
+h5py
+jupyterlab
+numpy
+pandas
+pyarrow
+scipy
+xarray

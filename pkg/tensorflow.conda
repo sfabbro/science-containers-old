@@ -1,11 +1,12 @@
 # tensorflow ML based conda packages
 
 autokeras
-keras
+tf-keras
+gpflow
 keras-cv
 keras-tuner
 tensorboard
-tensorflow=*=*cpu*
+tensorflow=2.*=*cpu*
 tensorflow-probability
 tensorflow-hub
 xplique

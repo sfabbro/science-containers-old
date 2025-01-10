@@ -4,15 +4,8 @@ bash_kernel
 black
 bqplot
 bqplot-image-gl
-dvclive
-fastai::execnb
-fastai::nbdev
-fastai::nbdev-numpy
-fastai::nbdev-pandas
-fastai::nbdev-pytorch
-fastai::nbdev-scipy
-fastai::nbdev-stdlib
-fastai::nbprocess
+deepchecks
+execnb
 ipyaladin
 ipyevents
 ipygany
@@ -21,54 +14,54 @@ ipympl
 ipynbname
 ipython_genutils
 ipytree
+ipyvolume
+ipyvuetify
 ipywebrtc
 ipywidgets
 isort
-jupyter-ai
+jedi-language-server
 jupyter-archive
 jupyter-resource-usage
 jupyter_server
 jupyter-server-proxy
 jupyterlab
 jupyterlab_code_formatter
+jupyterlab-deck
 jupyterlab-favorites
 jupyterlab-git
 jupyterlab-h5web
-jupyterlab_rise
+jupyterlab-lsp
 jupyterlab-variableinspector
 jupyterlab-myst
+jupyterlab_rise
 jupyterlab-unfold
 jupytext
+nb_conda_kernels
+nbdev
 nbqa
-notebook
+nbterm
 nodejs
+notebook
 papermill
-perspective-parquet
-pyvista
-voila
+python-lsp-server
+pywwt
 websockets
-yt
+
+# numpy<2
+shapash
+perspective-parquet
 
 # useless?
+#dvclive
+#pyvista
+#pyxel-sim
+#yt
+#glue-plotly
 #glue-astronomy
 #glue-jupyterlab
-#glue-wwt # very old
-#nb_conda_kernels
-#pywwt
-#sktime-all-extras
-#trame
-#vaex-jupyter
-#wwt_jupyterlab_extension
+#glue-wwt
 #xeus-python
-
-# not ready for jlab>4
-#ipyvolume
-#ipyvuetify
-#jupyterlab-deck
+#vaex-jupyter
 #jupyterlab-link-share
+#jupyter-ai
 
-# still a bit buggy
-#jupyterlab-lsp
-#jedi-language-server
-#python-lsp-server
-#mamba_gator

@@ -1,10 +1,1 @@
-# jupyter and notebook related pip packages
-
-# requires jupyterlab<4
-#jupyterlab_hdf
-#jupyterlab_sublime
-
-#jdaviz
-
-jupyterlab-quarto
-tensorwatch
+jdaviz

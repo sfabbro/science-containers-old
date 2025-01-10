@@ -1,14 +1,12 @@
 # ML and numerics jax based conda packages
 
 cr-sparse
-dm_pix
+#dm_pix
 gpax
-lineax
 #objax
-#optimistix
 #oryx
 rax
-#scenic
+scenic
 
 #pkgs deps on tensorflow
 #aws-fortuna

@@ -1,0 +1,25 @@
+# cosmology packages
+
+21cmfast
+aemcmc
+astropy-healpix
+camb
+cosmolopy
+cosmopy
+cosmosis
+dsigma
+healpy
+healsparse
+mc3
+mocpy
+namaster
+nautilus-sampler
+ngmix
+numcosmo
+pyccl
+s2fft
+sncosmo
+spherematch
+spherical-geometry
+wcosmo
+zeus-mcmc

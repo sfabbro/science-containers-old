@@ -1,0 +1,11 @@
+# cadc packages external dependencies
+aenum
+args
+clint
+cryptography
+html2text
+lxml
+pyopenssl
+python-magic
+requests-toolbelt
+termcolor
